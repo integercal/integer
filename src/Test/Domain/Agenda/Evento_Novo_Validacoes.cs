@@ -16,7 +16,7 @@ namespace Integer.UnitTests.Domain.Agenda
         string nome, descricao;
         DateTime dataInicioEvento, dataFimEvento;
         Grupo grupo;
-        TipoEventoEnum tipoDoEvento;
+        TipoEvento tipoDoEvento;
 
         Evento evento;
 
@@ -27,7 +27,7 @@ namespace Integer.UnitTests.Domain.Agenda
             dataInicioEvento = new DateTime(2011, 01, 01, 8, 0, 0);
             dataFimEvento = new DateTime(2011, 01, 01, 10, 0, 0);
             grupo = MockRepository.GenerateStub<Grupo>();
-            tipoDoEvento = TipoEventoEnum.Comum;
+            tipoDoEvento = new TipoEvento("tipo", 1);
         }
 
         private void Cria_Evento() 
@@ -105,7 +105,7 @@ namespace Integer.UnitTests.Domain.Agenda
         [Fact]
         public void QuandoTipoNaoInformado_DisparaExcecao()
         {
-            tipoDoEvento = default(TipoEventoEnum);
+            tipoDoEvento = null;
 
             Assert.Throws<DbCException>(() => Cria_Evento());
         }

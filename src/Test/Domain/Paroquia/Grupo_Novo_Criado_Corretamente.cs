@@ -12,14 +12,16 @@ namespace Integer.UnitTests.Domain.Paroquia
     {
         Grupo grupo, grupoPai;
 
-        public Grupo_Novo_Criado_Corretamente() 
-        {
-            string nome = "Grupo";
-            string email = "grupo@Paroquia.com.br";
-            grupoPai = MockRepository.GenerateStub<Grupo>();
-            string cor = "FFFFFF";
+        string nome, email, cor;
 
-            grupo = new Grupo(nome, email, cor, grupoPai);
+        public Grupo_Novo_Criado_Corretamente()
+        {
+            nome = "Grupo";
+            email = "grupo@Paroquia.com.br";
+            grupoPai = MockRepository.GenerateStub<Grupo>();
+            cor = "FFFFFF";
+
+            CriarGrupo();
         }
 
         [Fact]
@@ -35,8 +37,17 @@ namespace Integer.UnitTests.Domain.Paroquia
         }
 
         [Fact]
-        public void Mapeia_Cor()
+        public void Nao_Tem_Cor_Quando_Eh_Evento_Filho()
         {
+            Assert.Null(grupo.Cor);
+        }
+
+        [Fact]
+        public void Tem_Cor_Quando_Eh_Evento_Pai()
+        {
+            grupoPai = null;
+            CriarGrupo();
+
             Assert.Equal("FFFFFF", grupo.Cor);
         }
 
@@ -56,6 +67,11 @@ namespace Integer.UnitTests.Domain.Paroquia
         public void Senha_EhPadrao_calendario2013() 
         {
             Assert.Equal("calendario2013", grupo.SenhaDescriptografada);
+        }
+
+        public void CriarGrupo() 
+        {
+            grupo = new Grupo(nome, email, cor, grupoPai);
         }
     }
 }

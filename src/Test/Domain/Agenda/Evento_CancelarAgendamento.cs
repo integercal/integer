@@ -36,7 +36,8 @@ namespace Integer.UnitTests.Domain.Agenda
         private Evento CriarEvento() 
         {
             Grupo grupo = MockRepository.GenerateStub<Grupo>();
-            return new Evento("Nome", null, DateTime.Now, DateTime.Now.AddHours(1), grupo, TipoEventoEnum.Comum);
+            TipoEvento tipo = MockRepository.GenerateStub<TipoEvento>();
+            return new Evento("Nome", null, DateTime.Now, DateTime.Now.AddHours(1), grupo, tipo);
         }
     }
 }

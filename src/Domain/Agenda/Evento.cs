@@ -29,7 +29,6 @@ namespace Integer.Domain.Agenda
         public DateTime DataInicio { get; private set; }
         public DateTime DataFim { get; private set; }
         public DenormalizedReference<Grupo> Grupo { get; private set; }
-        public TipoEventoEnum Tipo { get; private set; }
         public DateTime DataCadastro { get; private set; }
         public IEnumerable<Conflito> Conflitos { get; private set; }
         public IEnumerable<Reserva> Reservas { get; private set; }
@@ -51,58 +50,6 @@ namespace Integer.Domain.Agenda
             Reservas = new List<Reserva>();
             Rsvp = new List<RSVP>();
         }
-
-
-        #region remover
-
-        public Evento(string nome, string descricao, DateTime dataInicioEvento, DateTime dataFimEvento, Grupo grupo, TipoEventoEnum tipoDoEvento)
-            : this()
-        {
-            Preencher(nome, descricao, dataInicioEvento, dataFimEvento, grupo, tipoDoEvento);
-            DataCadastro = SystemTime.Now();
-            Estado = EstadoEventoEnum.Agendado;
-        }
-
-        private void Preencher(string nome, string descricao,
-                                                DateTime dataInicioEvento, DateTime dataFimEvento,
-                                                Grupo grupo, TipoEventoEnum tipoDoEvento)
-        {
-            PreencherNome(nome);
-            PreencherDescricao(descricao);
-            PreencherDatas(dataInicioEvento, dataFimEvento);
-            PreencherGrupo(grupo);
-            PreencherTipo(tipoDoEvento);
-        }
-
-        private void PreencherTipo(TipoEventoEnum tipoDoEvento)
-        {
-            #region pré-condição
-            var tipoFoiInformado = Assertion.That(tipoDoEvento != default(TipoEventoEnum))
-                                            .WhenNot("Necessário classificar o tipo do evento.");
-            #endregion
-            tipoFoiInformado.Validate();
-
-            Tipo = tipoDoEvento;
-        }
-
-        public void Alterar(string nome, string descricao, DateTime dataInicio, DateTime dataFim, Grupo grupo, TipoEventoEnum tipo)
-        {
-            bool dataInicioMudou = !this.DataInicio.Equals(dataInicio);
-            bool dataFimMudou = !this.DataFim.Equals(dataFim);
-            if (dataInicioMudou || dataFimMudou)
-            {
-                this.DataInicio = dataInicio;
-                this.DataFim = dataFim;
-                DomainEvents.Raise<HorarioDeEventoAlteradoEvent>(new HorarioDeEventoAlteradoEvent(this));
-            }
-
-            this.Nome = nome;
-            this.Descricao = descricao;
-            this.Grupo = grupo;
-            this.Tipo = tipo; // TODO: disparar DomainEvent de tipo alterado (se o tipo diminuiu a prioridade, o handler deverá remover os conflitos dos eventos menos prioritários até então)
-        }
-
-        #endregion
 
         public Evento(string nome, string descricao, DateTime dataInicioEvento, DateTime dataFimEvento, Grupo grupo, TipoEvento tipoDoEvento) : this()
         {
@@ -264,14 +211,6 @@ namespace Integer.Domain.Agenda
 
             if (locaisNovos.Count > 0)
                 DomainEvents.Raise<ReservaDeLocalAlteradaEvent>(new ReservaDeLocalAlteradaEvent(this));
-        }
-
-        public bool PossuiPrioridadeSobre(Evento outroEvento)
-        {
-            bool esteFoiCadastradoAntes = DateTime.Compare(this.DataCadastro, outroEvento.DataCadastro) == -1;
-
-            return this.Tipo.NivelDePrioridadeNaAgenda() > outroEvento.Tipo.NivelDePrioridadeNaAgenda()
-                    || (this.Tipo.NivelDePrioridadeNaAgenda() == outroEvento.Tipo.NivelDePrioridadeNaAgenda() && esteFoiCadastradoAntes);
         }
 
         public void CancelarAgendamento()

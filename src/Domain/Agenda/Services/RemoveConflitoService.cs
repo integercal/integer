@@ -67,10 +67,7 @@ namespace Integer.Domain.Agenda
         {
             Evento eventoAlterado = alteracaoDeHorario.EventoAlterado;
 
-            if (eventoAlterado.Tipo == TipoEventoEnum.Paroquial)
-                RemoverConflitosDeEventosNaoParoquiais(eventoAlterado);
-
-            RemoverConflitosComEventosParoquiais(eventoAlterado);               
+            //remover conflitos              
         }
 
         private void RemoverConflitosDeEventosNaoParoquiais(Evento eventoAlterado)

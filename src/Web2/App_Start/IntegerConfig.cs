@@ -85,7 +85,6 @@ namespace Web
             builder.RegisterType<RemoveConflitoService>().As<DomainEventHandler<ReservaDeLocalAlteradaEvent>>();
             builder.RegisterType<RemoveConflitoService>().As<DomainEventHandler<HorarioDeEventoAlteradoEvent>>();
 
-            builder.Register<AgendaEventoService>(c => new AgendaEventoService(c.Resolve<Eventos>()));
             builder.Register<TrocaSenhaService>(c => new TrocaSenhaService(c.Resolve<Usuarios>()));
 
             var container = builder.Build();

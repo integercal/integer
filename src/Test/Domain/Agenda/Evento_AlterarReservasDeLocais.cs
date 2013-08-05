@@ -34,7 +34,8 @@ namespace Integer.UnitTests.Domain.Agenda
             var dataInicioEvento = DateTime.Now;
             var dataFimEvento = dataInicioEvento.AddHours(4);
             var grupo = MockRepository.GenerateStub<Grupo>();
-            var evento = new Evento("Nome", "Descricao", dataInicioEvento, dataFimEvento, grupo, TipoEventoEnum.Comum);
+            var tipo = MockRepository.GenerateStub<TipoEvento>();
+            var evento = new Evento("Nome", "Descricao", dataInicioEvento, dataFimEvento, grupo, tipo);
 
             local = new Local("Local");
             local.Id = "1";

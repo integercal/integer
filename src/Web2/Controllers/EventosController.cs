@@ -21,12 +21,10 @@ namespace Web.Controllers
 {
     public class EventosController : IntegerController
     {
-        private readonly AgendaEventoService agendaService;
         private readonly Grupos grupos;
 
-        public EventosController(AgendaEventoService agendaService, Grupos grupos)
+        public EventosController(Grupos grupos)
         {
-            this.agendaService = agendaService;
             this.grupos = grupos;
         }
 

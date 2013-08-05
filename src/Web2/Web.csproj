@@ -171,6 +171,7 @@
     <Compile Include="Infra\Automapper\Profiles\EventoProfile.cs" />
     <Compile Include="Infra\DateTimeExtensions.cs" />
     <Compile Include="Infra\ExceptionFilter.cs" />
+    <Compile Include="Infra\Raven\AgendaEventoService.cs" />
     <Compile Include="Infra\Raven\EventoExtensions.cs" />
     <Compile Include="Infra\Raven\UsuarioExtensions.cs" />
     <Compile Include="Models\EventTypeModel.cs" />

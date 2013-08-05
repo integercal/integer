@@ -33,8 +33,7 @@ namespace Integer.Infrastructure.Repository
             {
                 ConnectionStringName = "Integer"
             };
-            store.Conventions.SaveEnumsAsIntegers = true;
-            
+            store.Conventions.SaveEnumsAsIntegers = true;            
             store.Conventions.IdentityPartsSeparator = "-";
             var generator = new MultiTypeHiLoKeyGenerator(10);
             store.Conventions.DocumentKeyGenerator = (dbname, commands, entity) => generator.GenerateDocumentKey(commands, store.Conventions, entity);

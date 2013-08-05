@@ -142,14 +142,12 @@
     <Compile Include="Agenda\Reserva.cs" />
     <Compile Include="Agenda\RSVP.cs" />
     <Compile Include="Agenda\TipoEvento.cs" />
-    <Compile Include="Agenda\TipoEventoEnumExtensions.cs" />
     <Compile Include="Agenda\EstadoEventoEnum.cs" />
     <Compile Include="Agenda\Evento.cs" />
     <Compile Include="Agenda\Exceptions\EventoPrioritarioException.cs" />
     <Compile Include="Agenda\Eventos.cs" />
     <Compile Include="Agenda\Horario.cs" />
     <Compile Include="Agenda\MotivoConflitoEnum.cs" />
-    <Compile Include="Agenda\TipoEventoEnum.cs" />
     <Compile Include="Acesso\Exceptions\UsuarioInexistenteException.cs" />
     <Compile Include="Paroquia\Locais.cs" />
     <Compile Include="Paroquia\Grupos.cs" />
@@ -159,7 +157,6 @@
     <Compile Include="Acesso\Exceptions\UsuarioExistenteException.cs" />
     <Compile Include="Paroquia\ParoquiaImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Agenda\Services\AgendaEventoService.cs" />
     <Compile Include="Acesso\Services\TrocaSenhaService.cs" />
     <Compile Include="Agenda\Services\RemoveConflitoService.cs" />
     <Compile Include="RequiresPostSharp.cs" />

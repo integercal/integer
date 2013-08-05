@@ -9,6 +9,8 @@ namespace Integer.Domain.Agenda
     [Serializable]
     public class TipoEvento : INamedDocument
     {
+        protected TipoEvento() { }
+
         public TipoEvento(string nome, int nivelPrioridade)
         {
             Nome = nome;

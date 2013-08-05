@@ -15,6 +15,7 @@ namespace Integer.UnitTests.Domain.Agenda
     {
         Evento evento;
         DateTime dataAtual, dataInicioEvento, dataFimEvento;
+        TipoEvento tipoDoEvento;
 
         public Evento_Novo_Criado_Corretamente() 
         {
@@ -22,7 +23,7 @@ namespace Integer.UnitTests.Domain.Agenda
             string descricao = "Retiro de aprofundamento da espiritualidade Salvatoriana";
             dataInicioEvento = new DateTime(2011, 01, 01, 8, 0, 0);
             dataFimEvento = new DateTime(2011, 01, 01, 10, 0, 0);
-            TipoEventoEnum tipoDoEvento = TipoEventoEnum.Comum;
+            tipoDoEvento = new TipoEvento("tipo", 1);
 
             Grupo grupo = MockRepository.GenerateStub<Grupo>();
             grupo.Id = "IdGrupo";
@@ -77,7 +78,7 @@ namespace Integer.UnitTests.Domain.Agenda
         [Fact]
         public void Mapeia_TipoEvento()
         {
-            Assert.Equal(TipoEventoEnum.Comum, evento.Tipo);
+            Assert.Equal(tipoDoEvento, evento.TipoEvento);
         }
     }
 }

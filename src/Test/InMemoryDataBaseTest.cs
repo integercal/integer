@@ -36,6 +36,10 @@ namespace Integer.UnitTests
                 RunInMemory = true,
 
             };
+            dataBase.Conventions.SaveEnumsAsIntegers = true;
+            dataBase.Conventions.IdentityPartsSeparator = "-";
+            var generator = new MultiTypeHiLoKeyGenerator(10);
+            dataBase.Conventions.DocumentKeyGenerator = (dbname, commands, entity) => generator.GenerateDocumentKey(commands, dataBase.Conventions, entity);
             dataBase.Conventions.DefaultQueryingConsistency = ConsistencyOptions.QueryYourWrites;
             dataBase.Initialize();
 
