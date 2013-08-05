@@ -38,7 +38,7 @@ namespace Integer.Infrastructure.Tasks
             tasksToExecute.Value.Clear();
         }
 
-        public async static void StartExecuting()
+        public async static void StartExecuting() 
         {
             var value = tasksToExecute.Value;
             var copy = value.ToArray();
