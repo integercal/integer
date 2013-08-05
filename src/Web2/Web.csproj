@@ -169,7 +169,6 @@
     <Compile Include="Infra\Automapper\Profiles\LocalProfile.cs" />
     <Compile Include="Infra\Automapper\Profiles\UserProfile.cs" />
     <Compile Include="Infra\Automapper\Profiles\EventoProfile.cs" />
-    <Compile Include="Infra\DateTimeConverter.cs" />
     <Compile Include="Infra\DateTimeExtensions.cs" />
     <Compile Include="Infra\ExceptionFilter.cs" />
     <Compile Include="Infra\Raven\EventoExtensions.cs" />
