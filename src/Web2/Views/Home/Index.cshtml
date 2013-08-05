@@ -1,0 +1,127 @@
+﻿@using System.Web
+@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendário Paroquial</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="content/images/favicon.png">
+
+    @Styles.Render("~/Content/css")
+    
+    <script type="text/javascript">
+        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            var mq = "@@-ms-viewport{width:auto!important}";
+            msViewportStyle.appendChild(document.createTextNode(mq));
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        }
+    </script>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <div class="navbar" ng-controller="HeaderController">
+        <div class="navbar-inner">
+            <div class="container">
+ 
+                <div class="pull-left">
+                    <a class="brand" href="/">
+                        <img id="titulo" src="/Content/images/logo.png" align="top" alt="">
+                    </a>
+                </div>
+                <div ng-show="isAuthenticated">
+                    <div id="facebook-user-menu" class="user-menu dropdown pull-right" ng-show="isFacebookUser" style="display:none;">
+                        <div id="action" data-toggle="dropdown">
+                            <img id="user-picture" src="{{currentUser.pictureUrl}}" class="img-polaroid img-rounded pull-right" />  
+                            <span id="user-name" class="pull-right"><b>{{currentUser.name}}</b></span>
+                        </div>
+                        <ul class="profileMenu dropdown-menu pull-right menu-box">
+                            <li><a href="#" ng-click="doLogout()" ng-i18next="userMenu.logoutMenu"></a></li>
+                        </ul>
+                    </div>
+                    <div class="user-menu dropdown pull-right" ng-show="!isFacebookUser" style="display:none;">
+                        <button type="button" id="drop3" role="button" class="btn btn-large dropdown-toggle" data-toggle="dropdown"><span ng-i18next="userMenu.button"></span> <b class="caret"></b></button>
+                        <ul class="profileMenu dropdown-menu menu-box">
+                            @*<li><a href="#!/config" ng-i18next="userMenu.config"></a></li>*@
+                            <li class="dropdown-submenu pull-left">
+                                <a tabindex="-1" ng-i18next="userMenu.admin"></a>
+                                <ul class="dropdown-menu">
+                                    <li><a tabindex="-1" href="#!/grupos">Grupos</a></li>
+                                    <li><a tabindex="-1" href="#!/locais">Locais</a></li>
+                                    <li><a tabindex="-1" href="#!/tipos">Tipos de Evento</a></li>
+                                    @*<li><a tabindex="-1" href="#!/usuarios">Usuários</a></li>*@
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#" ng-click="doLogout()" ng-i18next="userMenu.logoutMenu"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="user-menu dropdown pull-right" ng-show="!isAuthenticated" style="display:none;">
+                    <button type="button" id="drop3" role="button" class="btn btn-info btn-large dropdown-toggle" data-toggle="dropdown"><span ng-i18next="loginChoice.button"></span> <b class="caret"></b></button>
+                    <div class="dropdown-menu pull-right login-box menu-box" role="menu" aria-labelledby="drop3">
+                        <form name="userForm" accept-charset="UTF-8" style="margin:0;" ng-submit="doLogin(userForm)" novalidate>
+                            <div ng-hide="loginAsAdmin" ng-animate="{show: 'fade'}">
+                                <button type="button" class="zocial facebook" style="width:215px;" ng-i18next="loginChoice.fbButton" ng-click="doLoginFB()"></button>
+                                <label style="text-align:center;margin-top:5px" ng-i18next="loginChoice.orLabel"></label>
+                                <button type="button" class="btn btn-block" ng-click="toggleLoginAsAdmin()" ng-i18next="loginChoice.schedulerButton"></button>
+                            </div>
+                            <div ng-show="loginAsAdmin" ng-animate="{show: 'fade'}">
+                                <div class="alert alert-error" ng-show="loginError && isLoggingIn == false">
+                                    {{loginMessage}}
+                                </div>
+                                <label ng-i18next="loginForm.emailLabel" class="pull-left"></label><span ng-show="formSubmitted && userForm.email.$error.required" class="text-error" ng-i18next="global.required"></span>
+			                    <input type="text" name="email" ng-model="user.email" required>
+			                    <label ng-i18next="loginForm.passwordLabel" class="pull-left"></label><span ng-show="formSubmitted && userForm.password.$error.required" class="text-error" ng-i18next="global.required"></span>
+                                <input type="password" name="password" ng-model="user.password" required>
+                                <a href="#" ng-i18next="loginForm.forgotLabel"></a>
+			                    <label class="checkbox"><input type="checkbox" ng-model="user.remember" value="1"> <span ng-i18next="loginForm.rememberLabel"></span></label>
+                                <button type="submit" class="btn btn-primary" ng-disabled="isLoggingIn" ng-i18next="loginForm.loginButton"></button>
+                                <button type="button" class="btn" ng-click="resetForm()" ng-i18next="loginForm.cancelButton"></button>
+                            </div>
+		                </form>
+                    </div>
+                </div>
+ 
+            </div>
+        </div>
+    </div>
+    <div id="surface" class="container-fluid">
+        <div id="content" ng-view class="row-fluid">
+        </div>
+    </div>
+
+    @Scripts.Render("~/scripts/lib")    
+    @Scripts.Render("~/scripts/_wijmo")
+    <script type="text/javascript" src="~/Scripts/require.js" data-main="@Url.Content("~/App/main")"></script>
+
+    <script type="text/javascript">
+    var initialHeight, contentHeight;
+
+    $(function () {
+        var headerHeight = 90;
+        initialHeight = $('#content').height();
+        contentHeight = $(window).height() - headerHeight;
+
+        if(initialHeight < contentHeight ){
+            $('#content').css('height',contentHeight + 'px');
+        }
+
+        $(window).resize(function(){
+            contentHeight = $(window).height() - headerHeight;
+            if(initialHeight < contentHeight){
+                $('#content').css('min-height',contentHeight + 'px');    
+            }else{
+                $('#content').css('min-height',initialHeight + 'px');
+            }
+        });
+    });
+    </script>
+</body>
+</html>

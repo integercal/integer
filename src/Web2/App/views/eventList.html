@@ -1,0 +1,19 @@
+﻿
+<div class="white-wrapper span12">    
+    <div class="page-header">
+      <h1>Programação <small id="clock"> {{timenow}}</small></h1> 
+    </div>
+    <div style="height:1000px;overflow-y:auto;">
+        <ul class="nav nav-tabs nav-stacked">
+            <li ng-repeat="event in events">
+                <a href="#" style="height:100px;">
+                    <div class="clear" style="margin:5px;position:relative;">
+                        <h2 style="margin-left:30px;margin-top:30px;">
+                            <span style="font-size:40px;font-weight:normal;border-right:1px solid;padding-right:30px;">{{event.start}}</span><span style="margin-left:40px;">{{event.subject}}</span>
+                        </h2>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

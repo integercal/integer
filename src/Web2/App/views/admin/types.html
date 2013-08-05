@@ -1,0 +1,37 @@
+﻿
+<div class="white-wrapper">
+    <form name="formTypes">
+        <fieldset>
+            <legend ng-i18next="eventTypeForm.title"></legend>
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th class="span1" ng-i18next="eventTypeForm.priority"></th>
+                    <th class="span11" ng-i18next="eventTypeForm.name"></th>
+                </tr>
+                </thead>
+                <tbody ui-sortable="sortableOptions" ng-model="existingTypes">
+                    <tr ng-repeat="type in existingTypes" style="cursor:s-resize;">
+                        <td>{{type.priority}}</td>
+                        <td ng-mouseover="deleteIcon={visibility:'visible'}" ng-mouseout="deleteIcon={visibility:'hidden'}">
+                            <i class="icon-trash pull-left" ng-style="deleteIcon" style="cursor:pointer;visibility:hidden;" ng-click="delete($index,type)" ng-hide="type.editing"></i>
+                            <span class="typeLabel" ng-hide="type.editing" ng-click="edit(type)">{{type.name}}</span>
+                            <div>
+                                <input name="typeName" ng-model="type.name" ng-show="type.editing" ui-keydown="{enter: 'update(type)', esc: 'cancelEdit(type)'}" type="text" class="input-block-level" style="margin-bottom:0px;" />
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr class="info">
+                        <td>
+                            <input name="newType" ng-model="newType.name" ui-keypress="{13: 'insert(newType)'}" type="text" placeholder="Novo tipo" class="input-block-level" style="margin-bottom:0px;" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </form>
+</div>

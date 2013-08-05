@@ -1,0 +1,107 @@
+﻿
+<style>
+  .menu {
+  /* dropdown in accordion */ }
+  .menu .accordion-heading {
+    position: relative; }
+    .menu .accordion-heading .edit {
+      position: absolute;
+      top: 8px;
+      right: 30px; }
+  .menu .area {
+    border-left: 10px solid #f38787;
+    border-radius: 3px;
+  }
+  .menu .equipamento {
+    border-left: 4px solid #65c465; }
+  .menu .ponto {
+    border-left: 4px solid #98b3fa; }
+  .menu .collapse.in {
+    overflow: visible; }
+</style>
+
+<div class="white-wrapper">
+    <fieldset>
+        <legend ng-i18next="groupForm.title"></legend>
+            
+        <div class="menu">
+			<div class="accordion">
+                <div class="accordion-group" ng-repeat="group in rootGroups">
+                    <!-- Group -->
+                    <div class="accordion-heading area" ng-mouseover="menuIcon={visibility:'visible'}" ng-mouseout="menuIcon={visibility:'hidden'}" style="border-left: 10px solid #{{group.color}};">
+                        <div class="dropdown pull-left" style="margin: 5px;visibility:hidden" ng-style="menuIcon" style="cursor:pointer;visibility:hidden;" ng-hide="group.editing">
+                            <a class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;" href="#"><i class="icon-pencil"></i> </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"> 
+                                <li ng-click="edit(group)"><a href="#"><i class="icon-pencil"></i> Editar</a></li>
+                                <li><a href="#" class="danger" ng-click="delete($index,group)"><i class="icon-remove"></i> Excluir</a></li>
+                            </ul>
+                        </div>
+                        <a class="accordion-toggle" ng-hide="group.editing" data-toggle="collapse" href="#area{{$index}}">{{group.name}}</a>
+                        <div class="row-fluid">
+                            <form name="formEdit" class="form-inline" style="margin:5px;" ng-show="group.editing" novalidate>
+                                <input name="name" ng-model="group.name" type="text" placeholder="Novo Grupo" class="span3" style="margin-bottom:0px;" required />
+                                <input name="email" ng-model="group.email" type="text" placeholder="E-mail" class="span3" style="margin-bottom:0px;" required />                                    
+                                <label>Cor:</label>
+                                <div class="controls input-prepend">
+                                    <input name="color" ng-model="group.color" type="text" class="color" color-picker required style="visibility:hidden;width:1px;" />
+                                </div>
+                                <button type="button" class="btn btn-primary" ng-click="update(formEdit, group)">Salvar</button>
+                                <button type="button" class="btn btn-link" ng-click="cancelEdit(formEdit, group)">Cancelar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /Group --> 
+                    <!-- Child --> 
+                    <div id="area{{$index}}" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <span ng-hide="group.children.length > 0" style="margin-left:20px;">Nenhum grupo filho</span>
+                            <ul class="nav nav-list">
+                                <li ng-repeat="child in group.children" ng-mouseover="childMenuIcon={visibility:'visible'}" ng-mouseout="childMenuIcon={visibility:'hidden'}" style="margin-bottom:10px;">
+                                    <div class="dropdown" style="margin: 5px;visibility:hidden;position:absolute;" ng-style="childMenuIcon" style="cursor:pointer;visibility:hidden;" ng-hide="child.editing">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;" href="#"><i class="icon-pencil"></i> </a>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"> 
+                                            <li ng-click="edit(child)"><a href="#"><i class="icon-pencil"></i> Editar</a></li>
+                                            <li><a href="#" class="danger" ng-click="deleteChild($index,child, group)"><i class="icon-remove"></i> Excluir</a></li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" ng-hide="child.editing" style="margin-left:20px;">{{child.name}}</a>
+                                    <form name="formEditChild" class="form-inline" style="margin-bottom:0px;margin-left:20px;" ng-show="child.editing" novalidate>
+                                        <input name="name" ng-model="child.name" type="text" placeholder="Novo Grupo" class="span3" style="margin-bottom:0px;" required />
+                                        <input name="email" ng-model="child.email" type="text" placeholder="E-mail" class="span3" style="margin-bottom:0px;" required />                                    
+                                        <button type="button" class="btn btn-primary" ng-click="update(formEditChild, child)">Salvar</button>
+                                        <button type="button" class="btn btn-link" ng-click="cancelEdit(formEditChild, child)">Cancelar</button>
+                                    </form>
+                                </li>
+                            </ul>
+                            <form name="formNewChildGroup" class="form-inline" style="margin-bottom:0px;margin-left:20px;" novalidate>
+                                <input name="name" ng-model="newChildGroup.name" type="text" placeholder="Novo Grupo" class="span3" style="margin-bottom:0px;" required />
+                                <input name="email" ng-model="newChildGroup.email" type="text" placeholder="E-mail" class="span3" style="margin-bottom:0px;" required />
+                                <button type="button" class="btn btn-primary" ng-click="insertChild(formNewChildGroup, newChildGroup, group)">Salvar</button>
+                            </form>
+                        </div>
+                    </div> 
+                    <!-- /Child --> 
+                </div> 
+                <!-- blank --> 
+                <div class="accordion-group">
+                    <!-- Group -->
+                    <div class="accordion-heading" style="background-color: #d9edf7;">          
+                        <div class="row-fluid" style="padding:5px;">
+                            <form name="formNewRootGroup" class="form-inline" style="margin-bottom:0px;" novalidate>
+                                <input name="name" ng-model="newGroup.name" type="text" placeholder="Novo Grupo" class="span3" style="margin-bottom:0px;" required />
+                                <input name="email" ng-model="newGroup.email" type="text" placeholder="E-mail" class="span3" style="margin-bottom:0px;" required />                                    
+                                <label>Cor:</label>
+                                <div class="controls input-prepend">
+                                    <input name="color" ng-model="newGroup.color" type="hidden" class="color" color-picker required />
+                                </div>
+                                <button type="button" class="btn btn-primary" ng-click="insert(formNewRootGroup)">Salvar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /Group -->  
+                </div>
+                <!-- /blank -->                            
+            </div>
+		</div>    
+    </fieldset>
+</div>

@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Contato";
+}
+
+@section script {
+    <script src="~/Content/js/app/contato.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+}
+
+<!-- Contact starts -->
+            
+<div class="contact">
+    <div class="row">
+        <div class="span12">
+                  
+            
+            <!-- Contact -->
+                   
+            <div class="alert alert-error" id="msgerror" style="display:none;">
+                <button type="button" class="close" onclick="$('.alert-error').fadeOut()">×</button>
+                Não foi possível enviar a mensagem agora. Tente novamente ou envie-nos um e-mail (contato@calendarioparoquial.com.br).
+            </div>
+            <div class="alert alert-success" id="msgsuccess" style="display:none;">
+                <button type="button" class="close" onclick="$('.alert-success').fadeOut()">×</button>
+                Mensagem enviada. Em breve entraremos em contato.
+            </div>
+              
+            <div class="contact">
+            
+            <div class="row">
+                <div class="span6">
+                    <div class="cwell">
+                        <!-- Contact form -->
+                        <div class="form">
+                            <label >Envie um e-mail para <strong>contato@calendarioparoquial.com.br</strong></label>
+                            <label >ou</label>
+                            <!-- Contact form (not working)-->
+                            <form id="formContato" class="form-horizontal" method="post" action="contato">
+                                <div class="control-group">
+                                <label>Preencha o formulário</label>
+                                </div>
+                                <!-- Name -->
+                                <div class="control-group">
+                                <label class="control-label" for="name">Nome</label>
+                                <div class="controls">
+                                    <input type="text" class="input-medium" name="nome">
+                                </div>
+                                </div>
+                                <!-- Email -->
+                                <div class="control-group">
+                                <label class="control-label" for="email">E-mail</label>
+                                <div class="controls">
+                                    <input type="text" class="input-medium" name="email">
+                                </div>
+                                </div>
+                                <!-- Website -->
+                                <div class="control-group">
+                                <label class="control-label" for="website">Paróquia</label>
+                                <div class="controls">
+                                    <input type="text" class="input-medium" name="paroquia">
+                                </div>
+                                </div>
+                                <!-- Comment -->
+                                <div class="control-group">
+                                <label class="control-label" for="comment">Comentário</label>
+                                <div class="controls">
+                                    <textarea class="input-medium" name="comentario" rows="3"></textarea>
+                                </div>
+                                </div>
+                                <!-- Buttons -->
+                                <div class="form-actions">
+                                    <!-- Buttons -->
+                                <button type="submit" class="btn">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                        </div>
+                </div>
+                <div class="span6">
+                    <div class="cwell">
+                        <div class="gmap">                       
+                            <iframe width="425" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=pt-BR&amp;geocode=&amp;q=Rua+Divino+Salvador,+153,+Rio+de+Janeiro,+Rep%C3%BAblica+Federativa+do+Brasil&amp;aq=t&amp;sll=21.125498,81.914063&amp;sspn=22.137154,43.286133&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Divino+Salvador,+153+-+Piedade,+Rio+de+Janeiro,+20756-210,+Rep%C3%BAblica+Federativa+do+Brasil&amp;t=m&amp;ll=-22.887898,-43.310702&amp;spn=0.004942,0.00912&amp;z=16&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://maps.google.co.in/maps?f=q&amp;source=embed&amp;hl=pt-BR&amp;geocode=&amp;q=Rua+Divino+Salvador,+153,+Rio+de+Janeiro,+Rep%C3%BAblica+Federativa+do+Brasil&amp;aq=t&amp;sll=21.125498,81.914063&amp;sspn=22.137154,43.286133&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Divino+Salvador,+153+-+Piedade,+Rio+de+Janeiro,+20756-210,+Rep%C3%BAblica+Federativa+do+Brasil&amp;t=m&amp;ll=-22.887898,-43.310702&amp;spn=0.004942,0.00912&amp;z=16&amp;iwloc=A" style="color:#0000FF;text-align:left">Exibir mapa ampliado</a></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        
+            </div>
+                     
+        </div>
+    </div>
+</div>

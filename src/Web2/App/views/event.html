@@ -1,0 +1,141 @@
+﻿
+
+<div class="white-wrapper span8">
+    <form name="eventForm" style="margin:0;" ng-show="canEdit" novalidate>    
+        <div class="page-header row-fluid">
+            <div class="span2">
+                <button class="btn" title="{{'eventForm.backButton' | i18next}}" ng-click="backToCalendar()" ng-disabled="isSaving"><i class="icon-reply"></i></button> 
+                <button class="btn btn-primary" ng-click="saveEvent(eventForm)" ng-disabled="isSaving" ng-i18next="global.save"></button>
+            </div>
+            <div class="span10">
+                <div class="alert" ng-show="validationMessage != null && validationMessage != ''" ng-animate="{show: 'fade'}">
+                    <button type="button" class="close" ng-click="closeAlert()">&times;</button>
+                    <span ng-bind-html-unsafe="validationMessage"></span>
+                </div>
+            </div>
+        </div>           
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="row-fluid">
+                    <h4 ng-i18next="eventForm.whenTitle"></h4>
+                    <div class="span6 pull-left">
+                        <label class="pull-left" ng-i18next="eventForm.startLabel"></label>
+                        <span ng-show="formSubmitted && eventForm.start.$error.required" class="text-error" ng-i18next="global.required"></span>
+                        <div class="input-append date datetimecontrol">
+                            <input name="start" type="text" class="input-datetime" ng-model="selectedStart" date-time required />
+                            <span class="add-on"><i class="icon-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="span5 pull-right">
+                        <label class="pull-left" ng-i18next="eventForm.endLabel"></label>
+                        <span ng-show="formSubmitted && eventForm.end.$error.required" class="text-error" ng-i18next="global.required"></span>
+                        <div class="input-append date datetimecontrol">
+                            <input name="end" type="text" class="input-datetime" ng-model="selectedEnd" date-time required />
+                            <span class="add-on"><i class="icon-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">                    
+                    <h4 ng-i18next="eventForm.whatTitle"></h4>
+                    <div class="span12">
+                        <label class="pull-left" ng-i18next="eventForm.subjectLabel"></label>
+                        <span ng-show="formSubmitted && eventForm.subject.$error.required" class="text-error" ng-i18next="global.required"></span>
+                        <input name="subject" type="text" class="input-block-level" ng-model="currentEvent.subject" required />
+                        <label ng-i18next="eventForm.descriptionLabel"></label>
+                        <textarea rows="3" class="input-block-level" ng-model="currentEvent.description"></textarea>
+                        <label class="pull-left" ng-i18next="eventForm.eventTypeLabel"></label>
+                        <span ng-show="formSubmitted && eventForm.eventType.$error.required" class="text-error" ng-i18next="global.required"></span>
+                        <select name="eventType" class="input-block-level" ng-model="currentEvent.eventType" ng-options="t.name for t in eventTypes" required>
+                            <option ng-i18next="global.selectOption"></option>
+                        </select>
+                        <div ng-show="groups.length > 0">
+                            <label class="pull-left" ng-i18next="eventForm.groupLabel"></label>
+                            <span ng-show="formSubmitted && eventForm.group.$error.required" class="text-error" ng-i18next="global.required"></span>
+                            <select name="group" class="input-block-level" ng-model="currentEvent.group" ng-options="g.name for g in groups" required>
+                                <option ng-i18next="global.selectOption"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>                        
+            </div>
+            <div class="span6">
+                <div class="row-fluid">
+                    <div class="row-fluid">
+                        <h4 class="pull-left" ng-i18next="eventForm.whereTitle"></h4>
+                        <span ng-show="formSubmitted && currentEvent.locals.length == 0" class="text-error help-inline" ng-i18next="global.required"></span>
+                    </div>
+                    <div class="form-event-locals-wrapper span5" style="height:350px;">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li ng-repeat="local in locals" ng-class="{'active': local.selected}" ng-click="selectLocal(local)" ng-required="currentEvent.locals.length==0">
+                            <a href=""><i ng-class="{'icon-check': local.selected, 'icon-check-empty': !local.selected }"></i> &nbsp;{{local.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div ng-show="!canEdit">
+        <div class="page-header row-fluid">
+            <button class="btn" title="{{'eventForm.backButton' | i18next}}" ng-click="backToCalendar()"><i class="icon-reply"></i></button> 
+        </div>
+        <div class="row-fluid event-readonly-lead">
+            <div class="span2">
+                <i class="icon-calendar-empty icon-8x event-readonly-date">
+                    <span class="event-readonly-day">{{ currentEvent.start | date:'dd' }}</span>
+                    <span class="event-readonly-month">{{ currentEvent.start | date:'MMM'}}</span>
+                </i>
+            </div>
+            <div class="span10">
+                <h1 class="event-readonly-subject">{{currentEvent.subject}}</h1>
+                <div class="lead event-readonly-hour">
+                    {{ currentEvent.start | date:'HH:mm' }}h 
+                    <small ng-i18next="eventReadOnly.until">até</small>
+                    <span ng-hide="sameDayEvent()">{{ currentEvent.end | date:'dd MMM' }}</span> {{ currentEvent.end | date:'HH:mm' }}h 
+                </div>
+                <div><strong ng-i18next="eventReadOnly.local"></strong> <span ng-repeat="local in currentEvent.locals"><span ng:hide='$index==0'>, </span>{{ local.name }}</span></div>
+            </div>
+        </div>
+        <blockquote style="margin-top:20px">{{ currentEvent.description }}</blockquote>
+        <div class="row-fluid">
+            <span ng-i18next="eventReadOnly.organizer"></span> <strong>{{ currentEvent.group.name }}</strong> 
+            <!--<br/><span ng-i18next="eventReadOnly.doubts"></span> <a href="#"><span ng-i18next="eventReadOnly.contactOrganizer"></span></a>-->
+        </div>
+    </div>
+</div>
+<div class="span4">
+    <h4><span ng-i18next="eventForm.whoTitle"></span><small ng-show="currentEvent.rsvp.length > 0" ng-animate="'fade'"> {{currentEvent.rsvp.length}} RSVP</small></h4> 
+    <div class="event-social">
+        <button class="btn btn-primary" ng-click="rsvpMe()" ng-show="!currentUserWillGo" ng-animate="{ leave: 'fade' }"><i class="icon-thumbs-up icon-white"></i> <span ng-i18next="eventReadOnly.Going"></span></button>
+        <button class="btn btn-primary" ng-click="inviteFriends()"><i class="icon-facebook-sign icon-white"></i> <span ng-i18next="eventReadOnly.InviteFriends"></span></button>
+    </div>
+    <p class="lead" ng-show="currentEvent.rsvp.length == 0" ng-i18next="eventReadOnly.noRSVP"></p>
+    <div class="well well-small event-rsvp" ng-repeat="user in currentEvent.rsvp">
+        <div class="media">
+            <img src="//graph.facebook.com/{{user.username}}/picture" alt="" class="pull-left img-polaroid img-rounded media-object" style="height:60px; width:60px;">
+            <div class="media-body">
+                <h4><a href="#" class="tip" title=""><strong>{{user.name}}</strong></a></h4>                
+                <button type="button" class="btn btn-small btn-danger" data-placement="bottom" ng-click="desRsvpMe($index)" ng-show="user.username == currentUser.username">
+                    <i class="icon-meh icon-large"></i> <span ng-i18next="eventReadOnly.NotGoing"></span>
+                </button> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-class="(shouldInviteFriends == true || isInvitingFriends == true) ? 'modal-backdrop fade in' : ''"></div>
+<div ng-class="(shouldInviteFriends == true && isInvitingFriends == false) ? 'modal fade in' : 'hide fade'">
+  <div class="modal-header">
+    <h3><span ng-i18next="eventFacebook.title"></span></h3>
+  </div>
+  <div id="event-social-rsvp" class="modal-body">
+    <p>
+        <span ng-i18next="eventFacebook.message"></span>
+        <br/>
+        <span ng-i18next="eventFacebook.question"></span>
+    </p>
+    <button type="button" class="zocial facebook" ng-click="inviteFriends()"><span ng-i18next="eventFacebook.inviteFriends"></span></button>
+    <button class="btn btn-link" ng-click="confirmInvitedFriends()" ng-i18next="eventFacebook.alreadyInvited"></button>
+  </div>
+</div>

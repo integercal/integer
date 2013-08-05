@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Integer.Domain.Agenda;
+using Integer.Domain.Paroquia;
+using Integer.Infrastructure.DateAndTime;
+using Integer.Infrastructure.Repository;
+using Rhino.Mocks;
+using Xunit;
+using Integer.Domain.Agenda.Exceptions;
+
+namespace Integer.UnitTests.Domain.Services
+{
+    public class AgendaEventoService_QuandoLocalJaEstaReservadoParaOutroEvento_MaisPrioritario_Test : InMemoryDataBaseTest
+    {
+        Evento eventoExistente, eventoNovo;
+
+        AgendaEventoService agendaEventoService;
+
+        Local localDesejado;
+        DateTime dataAtual;
+
+        public AgendaEventoService_QuandoLocalJaEstaReservadoParaOutroEvento_MaisPrioritario_Test() 
+        {
+            dataAtual = DateTime.Now;
+            SystemTime.Now = () => dataAtual;
+
+            var eventos = new EventoRepository(DataBaseSession);
+            agendaEventoService = new AgendaEventoService(eventos);
+        }
+
+        [Fact]
+        public void QuandoAReservaNova_ConflitaComLocalDoEventoPrioritarioExistente_DisparaExcecao() 
+        {
+            CriarEventoExistenteQueReservouLocal(TipoEventoEnum.GrandeMovimentoDePessoas);
+
+            eventoNovo = CriarEvento(TipoEventoEnum.Comum, dataAtual, dataAtual.AddHours(4));
+            eventoNovo.Reservar(localDesejado);
+
+            Assert.Throws<LocalReservadoException>(() => agendaEventoService.Agendar(eventoNovo));
+        }
+
+        private void CriarEventoExistenteQueReservouLocal(TipoEventoEnum tipoEvento) 
+        {
+            eventoExistente = CriarEvento(tipoEvento, dataAtual, dataAtual.AddHours(4));
+
+            localDesejado = new Local("Um Local");
+            eventoExistente.Reservar(localDesejado);
+
+            DataBaseSession.Store(eventoExistente);
+            DataBaseSession.SaveChanges();
+        }
+
+        private Evento CriarEvento(TipoEventoEnum tipo, DateTime dataInicio, DateTime dataFim)
+        {
+            var grupo = MockRepository.GenerateStub<Grupo>();
+            return new Evento("Nome", "Descricao", dataInicio, dataFim, grupo, tipo);
+        }
+    }
+}

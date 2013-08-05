@@ -1,0 +1,37 @@
+﻿
+<div class="white-wrapper">
+    <form name="formLocals">
+        <fieldset>
+            <legend ng-i18next="localForm.title"></legend>
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th class="span1">#</th>
+                    <th class="span11" ng-i18next="localForm.name"></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-class="{warning: local.localName.$dirty }" ng-repeat="local in existingLocals">
+                        <td>{{$index + 1}}</td>
+                        <td ng-mouseover="deleteIcon={visibility:'visible'}" ng-mouseout="deleteIcon={visibility:'hidden'}">
+                            <i class="icon-trash pull-left" ng-style="deleteIcon" style="cursor:pointer;visibility:hidden;" ng-click="delete($index,local)" ng-hide="local.editing"></i>
+                            <span class="localLabel" ng-hide="local.editing" ng-click="edit(local)">{{local.name}}</span>
+                            <div>
+                                <input name="localName" ng-model="local.name" ng-show="local.editing" ui-keydown="{enter: 'update(local)', esc: 'cancelEdit(local)'}" type="text" class="input-block-level" style="margin-bottom:0px;" />
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr class="info">
+                        <td>
+                            <input name="newLocal" ng-model="newLocal.name" ui-keypress="{13: 'insert(newLocal)'}" type="text" placeholder="Novo local" class="input-block-level" style="margin-bottom:0px;" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </form>
+</div>

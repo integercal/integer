@@ -1,0 +1,590 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9367093A-B0AE-499E-AF82-64AE658955A5}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Web</RootNamespace>
+    <AssemblyName>Web2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.0.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\packages\Autofac.3.0.2\lib\net40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi">
+      <HintPath>..\packages\Autofac.WebApi.3.0.2\lib\net40\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=2.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DbC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Integer\lib\DbC.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions, Version=2.0.3.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Client.2.0.2360\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=2.0.3.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Client.2.0.2360\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Database, Version=2.0.3.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Database.2.0.2360\lib\net40\Raven.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Services" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.1\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\IntegerConfig.cs" />
+    <Compile Include="Controllers\IntegerController.cs" />
+    <Compile Include="Controllers\GruposController.cs" />
+    <Compile Include="Controllers\TiposDeEventoController.cs" />
+    <Compile Include="Controllers\EventosController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocaisController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infra\Automapper\AutoMapperConfiguration.cs" />
+    <Compile Include="Infra\Automapper\AutoMapperExtensions.cs" />
+    <Compile Include="Infra\Automapper\Profiles\GroupProfile.cs" />
+    <Compile Include="Infra\Automapper\Profiles\LocalProfile.cs" />
+    <Compile Include="Infra\Automapper\Profiles\UserProfile.cs" />
+    <Compile Include="Infra\Automapper\Profiles\EventoProfile.cs" />
+    <Compile Include="Infra\DateTimeConverter.cs" />
+    <Compile Include="Infra\DateTimeExtensions.cs" />
+    <Compile Include="Infra\ExceptionFilter.cs" />
+    <Compile Include="Infra\Raven\EventoExtensions.cs" />
+    <Compile Include="Infra\Raven\UsuarioExtensions.cs" />
+    <Compile Include="Models\EventTypeModel.cs" />
+    <Compile Include="Models\FacebookUserModel.cs" />
+    <Compile Include="Models\GroupModel.cs" />
+    <Compile Include="Models\CurrentUserModel.cs" />
+    <Compile Include="Models\EventModel.cs" />
+    <Compile Include="Models\LocalModel.cs" />
+    <Compile Include="Models\RSVPModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\ApiIdentity.cs" />
+    <Compile Include="Security\BasicAuthenticationHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App\controllers\admin\eventTypeController.js" />
+    <Content Include="App\controllers\admin\groupController.js" />
+    <Content Include="App\controllers\calendarController.js" />
+    <Content Include="App\controllers.js" />
+    <Content Include="App\controllers\admin\localController.js" />
+    <Content Include="App\controllers\eventListController.js" />
+    <Content Include="App\controllers\eventController.js" />
+    <Content Include="App\controllers\headerController.js" />
+    <Content Include="App\directives.js" />
+    <Content Include="App\lib\http-auth-interceptor.js" />
+    <Content Include="App\locales\en\translation.js" />
+    <Content Include="App\locales\pt-BR\translation.js" />
+    <Content Include="App\main.js" />
+    <Content Include="App\routes.js" />
+    <Content Include="App\services.js" />
+    <Content Include="App\services\FacebookProvider.js" />
+    <Content Include="App\services\groupData.js" />
+    <Content Include="App\services\eventTypeData.js" />
+    <Content Include="App\services\localData.js" />
+    <Content Include="App\services\eventData.js" />
+    <Content Include="App\services\userData.js" />
+    <Content Include="App\views\admin\types.html" />
+    <Content Include="App\views\admin\groups.html" />
+    <Content Include="App\views\admin\locals.html" />
+    <Content Include="App\views\calendar.html" />
+    <Content Include="App\views\event.html" />
+    <Content Include="App\views\eventList.html" />
+    <Content Include="Content\angular-ui.css" />
+    <Content Include="Content\angular-ui.min.css" />
+    <Content Include="Content\app.css" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\colorPicker.css" />
+    <Content Include="Content\datetimepicker\datetimepicker.css" />
+    <Content Include="Content\durandal.css" />
+    <Content Include="Content\font-awesome-ie7.css" />
+    <Content Include="Content\font-awesome-ie7.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\font\fontawesome-webfont.svg" />
+    <Content Include="Content\gmail-scrollbars.css" />
+    <Content Include="Content\ie10mobile.css" />
+    <Content Include="Content\images\favicon.png" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\select2.css" />
+    <Content Include="Content\select2.png" />
+    <Content Include="Content\select2x2.png" />
+    <Content Include="Content\spinner.gif" />
+    <Content Include="Content\themes\arctic\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\arctic\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\arctic\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\arctic\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\arctic\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\arctic\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\arctic\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\arctic\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\arctic\images\ui-bg_smooth_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\arctic\images\ui-bg_smooth_75_fafafa_1x400.png" />
+    <Content Include="Content\themes\arctic\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\arctic\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\arctic\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\arctic\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\arctic\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\arctic\images\wijmo-ui-icons_000000_240x112.png" />
+    <Content Include="Content\themes\arctic\images\wijmo-ui-icons_ffffff_240x112.png" />
+    <Content Include="Content\themes\arctic\jquery-wijmo.css" />
+    <Content Include="Content\themes\aristo\images\scrollbar-horizontal.png" />
+    <Content Include="Content\themes\aristo\images\scrollbar-vertical.png" />
+    <Content Include="Content\themes\aristo\images\scrollbutton-vertical.png" />
+    <Content Include="Content\themes\aristo\images\scroller-down-arrow.png" />
+    <Content Include="Content\themes\aristo\images\scroller-down-arrow_hover.png" />
+    <Content Include="Content\themes\aristo\images\scroller-left-arrow.png" />
+    <Content Include="Content\themes\aristo\images\scroller-left-arrow_hover.png" />
+    <Content Include="Content\themes\aristo\images\scroller-right-arrow.png" />
+    <Content Include="Content\themes\aristo\images\scroller-right-arrow_hover.png" />
+    <Content Include="Content\themes\aristo\images\scroller-up-arrow.png" />
+    <Content Include="Content\themes\aristo\images\scroller-up-arrow_hover.png" />
+    <Content Include="Content\themes\aristo\images\ui-bg_flat_0_2d5972_40x100.png" />
+    <Content Include="Content\themes\aristo\images\ui-bg_flat_0_4f4f4f_40x100.png" />
+    <Content Include="Content\themes\aristo\images\ui-bg_highlight-hard_80_c4c4c4_1x100.png" />
+    <Content Include="Content\themes\aristo\images\ui-bg_highlight-soft_100_83b0ca_1x100.png" />
+    <Content Include="Content\themes\aristo\images\ui-bg_highlight-soft_100_c0c0c0_1x100.png" />
+    <Content Include="Content\themes\aristo\images\ui-bg_highlight-soft_100_c4c4c4_1x100.png" />
+    <Content Include="Content\themes\aristo\images\ui-bg_highlight-soft_100_ccccd1_1x100.png" />
+    <Content Include="Content\themes\aristo\images\ui-bg_inset-hard_65_85b2cb_1x100.png" />
+    <Content Include="Content\themes\aristo\images\ui-bg_inset-soft_95_fef1ec_1x100.png" />
+    <Content Include="Content\themes\aristo\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\aristo\images\ui-icons_38667f_256x240.png" />
+    <Content Include="Content\themes\aristo\images\ui-icons_616161_256x240.png" />
+    <Content Include="Content\themes\aristo\images\ui-icons_898989_256x240.png" />
+    <Content Include="Content\themes\aristo\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\aristo\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\aristo\images\vertical-menu-item.png" />
+    <Content Include="Content\themes\aristo\images\wijmo-ui-icons_000000_240x112.png" />
+    <Content Include="Content\themes\aristo\images\wijmo-ui-icons_ffffff_240x112.png" />
+    <Content Include="Content\themes\aristo\jquery-wijmo.css" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\themes\bootstrap\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-bg_glass_75_ffffff_1x400.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-bg_inset-soft_95_fef1ec_1x100.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\bootstrap\images\ui-icons_f6cf3b_256x240.png" />
+    <Content Include="Content\themes\bootstrap\jquery-ui.css" />
+    <Content Include="Content\themes\metro\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\metro\images\ui-bg_flat_55_dabf2c_40x100.png" />
+    <Content Include="Content\themes\metro\images\ui-bg_flat_65_000000_40x100.png" />
+    <Content Include="Content\themes\metro\images\ui-bg_flat_75_000000_40x100.png" />
+    <Content Include="Content\themes\metro\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\metro\images\ui-bg_flat_95_b91d1d_40x100.png" />
+    <Content Include="Content\themes\metro\images\ui-bg_glass_75_ffffff_1x400.png" />
+    <Content Include="Content\themes\metro\images\ui-icons_000000_256x240.png" />
+    <Content Include="Content\themes\metro\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\metro\images\wijmo-ui-icons_000000_240x112.png" />
+    <Content Include="Content\themes\metro\images\wijmo-ui-icons_ffffff_240x112.png" />
+    <Content Include="Content\themes\metro\jquery-wijmo.css" />
+    <Content Include="Content\themes\sterling\images\scrollbar-horizontal.png" />
+    <Content Include="Content\themes\sterling\images\scrollbar-vertical.png" />
+    <Content Include="Content\themes\sterling\images\scrollbutton-vertical.png" />
+    <Content Include="Content\themes\sterling\images\scroller-down-arrow.png" />
+    <Content Include="Content\themes\sterling\images\scroller-down-arrow_hover.png" />
+    <Content Include="Content\themes\sterling\images\scroller-left-arrow.png" />
+    <Content Include="Content\themes\sterling\images\scroller-left-arrow_hover.png" />
+    <Content Include="Content\themes\sterling\images\scroller-right-arrow.png" />
+    <Content Include="Content\themes\sterling\images\scroller-right-arrow_hover.png" />
+    <Content Include="Content\themes\sterling\images\scroller-up-arrow.png" />
+    <Content Include="Content\themes\sterling\images\scroller-up-arrow_hover.png" />
+    <Content Include="Content\themes\sterling\images\ui-bg_flat_0_2d5972_40x100.png" />
+    <Content Include="Content\themes\sterling\images\ui-bg_flat_0_4f4f4f_40x100.png" />
+    <Content Include="Content\themes\sterling\images\ui-bg_highlight-hard_80_c4c4c4_1x100.png" />
+    <Content Include="Content\themes\sterling\images\ui-bg_highlight-soft_100_83b0ca_1x100.png" />
+    <Content Include="Content\themes\sterling\images\ui-bg_highlight-soft_100_c0c0c0_1x100.png" />
+    <Content Include="Content\themes\sterling\images\ui-bg_highlight-soft_100_c4c4c4_1x100.png" />
+    <Content Include="Content\themes\sterling\images\ui-bg_highlight-soft_100_ccccd1_1x100.png" />
+    <Content Include="Content\themes\sterling\images\ui-bg_inset-hard_65_85b2cb_1x100.png" />
+    <Content Include="Content\themes\sterling\images\ui-bg_inset-soft_95_fef1ec_1x100.png" />
+    <Content Include="Content\themes\sterling\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\sterling\images\ui-icons_38667f_256x240.png" />
+    <Content Include="Content\themes\sterling\images\ui-icons_616161_256x240.png" />
+    <Content Include="Content\themes\sterling\images\ui-icons_898989_256x240.png" />
+    <Content Include="Content\themes\sterling\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\sterling\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\sterling\images\vertical-menu-item.png" />
+    <Content Include="Content\themes\sterling\images\wijmo-ui-icons_000000_240x112.png" />
+    <Content Include="Content\themes\sterling\images\wijmo-ui-icons_ffffff_240x112.png" />
+    <Content Include="Content\themes\sterling\jquery-wijmo.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\wijmo\images\ui-anim_basic_16x16-branch.gif" />
+    <Content Include="Content\wijmo\images\waiting.gif" />
+    <Content Include="Content\wijmo\images\wijeditor\wijmo-ui-editor-colormarker.png" />
+    <Content Include="Content\wijmo\images\wijeditor\wijmo-ui-editor-colormask.png" />
+    <Content Include="Content\wijmo\images\wijeditor\wijmo-ui-editor-colorwheel.png" />
+    <Content Include="Content\wijmo\images\wijeditor\wijmo-ui-icons_000000_240x112.png" />
+    <Content Include="Content\wijmo\images\wijeditor\wijmo-ui-icons_ffffff_240x112.png" />
+    <Content Include="Content\wijmo\images\wijrating\wijmo-ui-rating.png" />
+    <Content Include="Content\wijmo\jquery.wijmo-open.3.20131.7.css" />
+    <Content Include="Content\wijmo\jquery.wijmo-pro.3.20131.7.css" />
+    <Content Include="Content\wijmo\jquery.wijmo-pro.all.3.20131.7.min.css" />
+    <Content Include="Content\zocial\zocial-regular-webfont.svg" />
+    <Content Include="Content\zocial\zocial.css" />
+    <Content Include="Global.asax" />
+    <Content Include="App\app.js" />
+    <Content Include="readme.txt" />
+    <Content Include="Scripts\angular-cookies.js" />
+    <Content Include="Scripts\angular-cookies.min.js" />
+    <Content Include="Scripts\angular-dragdrop.js" />
+    <Content Include="Scripts\angular-dragdrop.min.js" />
+    <Content Include="Scripts\angular-loader.js" />
+    <Content Include="Scripts\angular-loader.min.js" />
+    <Content Include="Scripts\angular-mobile.js" />
+    <Content Include="Scripts\angular-mobile.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-resource.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular-sanitize.js" />
+    <Content Include="Scripts\angular-sanitize.min.js" />
+    <Content Include="Scripts\angular-scenario.js" />
+    <Content Include="Scripts\angular-ui-ieshiv.js" />
+    <Content Include="Scripts\angular-ui-ieshiv.min.js" />
+    <Content Include="Scripts\angular-ui.js" />
+    <Content Include="Scripts\angular-ui.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Content\font\fontawesome-webfont.woff" />
+    <Content Include="Content\font\fontawesome-webfont.ttf" />
+    <Content Include="Content\font\fontawesome-webfont.eot" />
+    <Content Include="Content\font\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\ExpoCatolica.pubxml" />
+    <None Include="Properties\PublishProfiles\Integer.pubxml" />
+    <None Include="Properties\PublishProfiles\teste.pubxml" />
+    <Content Include="Scripts\angular-ui.min.js.map">
+      <DependentUpon>angular-ui.js</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\datetimepicker\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\datetimepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\datetimepicker\locale\bootstrap-datetimepicker.pt-BR.js" />
+    <Content Include="Scripts\i18n.moment\pt-br.js" />
+    <Content Include="Scripts\i18next-1.6.3.js" />
+    <Content Include="Scripts\i18next-1.6.3.min.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-us.js" />
+    <Content Include="Scripts\i18n\angular-locale_en.js" />
+    <Content Include="Scripts\i18n\angular-locale_es.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-br.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.2.js" />
+    <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.colorPicker.js" />
+    <Content Include="Scripts\jquery.globalize\cultures\globalize.culture.pt-BR.js" />
+    <Content Include="Scripts\jquery.globalize\cultures\globalize.culture.pt-PT.js" />
+    <Content Include="Scripts\jquery.globalize\cultures\globalize.culture.pt.js" />
+    <Content Include="Scripts\jquery.globalize\cultures\globalize.cultures.js" />
+    <Content Include="Scripts\jquery.globalize\globalize.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\ng-i18next\ng-i18next.js" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\ui-bootstrap-0.4.0.js" />
+    <Content Include="Scripts\ui-bootstrap-0.4.0.min.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.4.0.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.4.0.min.js" />
+    <Content Include="Scripts\wijmo\external\jquery-ui-1.10.1.custom.min.js" />
+    <Content Include="Scripts\wijmo\external\jquery-ui.effects.custom.min.js" />
+    <Content Include="Scripts\wijmo\interop\angular.wijmo.3.20131.7.js" />
+    <Content Include="Scripts\wijmo\interop\angular.wijmo.3.20131.7.min.js" />
+    <Content Include="Scripts\wijmo\interop\jquery.wijmo.wijfilter.3.20131.7.js" />
+    <Content Include="Scripts\wijmo\interop\jquery.wijmo.wijfilter.3.20131.7.min.js" />
+    <Content Include="Scripts\wijmo\interop\knockout.wijmo.3.20131.7.js" />
+    <Content Include="Scripts\wijmo\interop\knockout.wijmo.3.20131.7.min.js" />
+    <Content Include="Scripts\wijmo\interop\wijmo.data.ajax.3.20131.7.js" />
+    <Content Include="Scripts\wijmo\interop\wijmo.data.ajax.3.20131.7.min.js" />
+    <Content Include="Scripts\wijmo\interop\wijmo.data.breeze.3.20131.7.js" />
+    <Content Include="Scripts\wijmo\interop\wijmo.data.breeze.3.20131.7.min.js" />
+    <Content Include="Scripts\wijmo\jquery.wijmo-open.all.3.20131.7.js" />
+    <Content Include="Scripts\wijmo\jquery.wijmo-open.all.3.20131.7.min.js" />
+    <Content Include="Scripts\wijmo\jquery.wijmo-pro.all.3.20131.7.js" />
+    <Content Include="Scripts\wijmo\jquery.wijmo-pro.all.3.20131.7.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\Home\_splash.cshtml" />
+    <Content Include="Views\MailTemplates\EventoConflito.cshtml" />
+    <Content Include="Views\MailTemplates\_Layout.cshtml" />
+    <Content Include="Views\MailTemplates\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{6d72f9ee-9d92-4e5b-a359-79c3a4271154}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Repository\Infrastructure.Repository.csproj">
+      <Project>{e67baa91-5a25-440a-bcbf-c7d9e85c28cf}</Project>
+      <Name>Infrastructure.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{40103d98-6f26-4bcd-a994-7a16567f713b}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\zocial\zocial-regular-webfont.eot" />
+    <Content Include="Content\zocial\zocial-regular-webfont.ttf" />
+    <Content Include="Content\zocial\zocial-regular-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4702</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://divinosalvador.dev-calendarioparoquial.com.br:50376/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

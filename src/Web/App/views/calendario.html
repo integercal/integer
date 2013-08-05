@@ -1,0 +1,26 @@
+﻿
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="nav-filter span3">
+            <form>
+                <fieldset>
+                    <legend>Filtro</legend>
+                    <label>Nome</label>
+                    <input type="text" class="input-block-level" />
+                    <label>Grupo</label>
+                    <select class="input-block-level" >
+
+                    </select>
+                    <button class="btn btn-info" type="button">Limpar</button>
+                </fieldset>
+            </form>
+        </div>
+        <div class="span9">
+            <div class="nav-scheduler" 
+                data-bind="wijevcal: { appointments: events, selectedDate: currentDate, selectedDatesChanged: dateChanged, viewType: currentViewType, culture: 'pt-BR', localization: { buttonToday: 'hoje', buttonDayView: 'Dia', buttonWeekView: 'Semana', buttonMonthView: 'Mês', buttonListView: 'Lista', labelToday: 'Hoje', labelAllDay: 'dia inteiro' } }">
+                <button class="btn-schedule btn btn-primary pull-left" type="button" data-bind="click: showModalEvent"><i class="icon-calendar icon-white"></i> Agendar</button>
+            </div>
+        </div>
+    </div>
+</div>

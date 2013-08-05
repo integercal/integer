@@ -1,0 +1,228 @@
+/* Green Color CSS */
+
+body{
+border-top:3px solid #1F88CA;
+}
+
+.color{
+color:#1F88CA;
+}
+
+a, a:visited{
+color:#1F88CA;
+}
+
+a:hover{
+color:#29a1c4;
+}
+
+.navbar-inner{
+background: #1F88CA !important;
+border-top:1px solid #29a1c4 !important;
+border-bottom:1px solid #29a1c4 !important; 
+}
+
+.navbar .btn{
+background:#29a1c4 !important;  
+}
+
+.navbar .btn:hover{
+background:#1F88CA !important;
+}
+
+.navbar .nav{
+border-right:1px solid #3ba4c2;
+}
+
+.navbar .nav > li > a{
+background: #1F88CA; 
+border-left:1px solid #3ba4c2;
+}
+
+.navbar .nav > li > a:hover{
+background:#29a1c4 !important;
+}
+
+.navbar .nav .active > a,
+.navbar .nav .active > a:hover,
+.navbar .nav .active > a:focus {
+background: #29a1c4 !important;
+}
+
+.dropdown-toggle{
+background: #1F88CA !important;
+}
+
+
+.dropdown-menu{
+background:#1F88CA !important;
+border:1px solid #29a1c4;
+}
+
+.dropdown-menu a{
+background:#1F88CA !important;
+border-bottom:1px solid #29a1c4;
+}
+
+.dropdown-menu a:hover,.dropdown-menu a:focus{
+background:#29a1c4 !important;
+}
+
+.social i{
+background:#1F88CA;
+}
+
+.social i:hover{
+background:#29a1c4;
+}
+
+.flex-caption{
+border-left:4px solid #1F88CA;
+}
+
+.service i{
+color:#1F88CA;
+}
+
+/* Timeline */
+
+.time .tidate{
+background:#1F88CA;
+}
+
+.time .timatter{
+border-bottom:2px solid #1F88CA;
+}
+
+/* Events - Accordion*/
+
+.events .accordion-heading h5{
+background:#1F88CA;
+}
+
+/* Slider */
+
+.da-slider{
+border-top: 4px solid #1F88CA;
+border-bottom: 4px solid #1F88CA;
+}
+
+.da-slide h2{
+color:#1F88CA;
+}
+
+.da-slide .da-link{
+background:#1F88CA;
+}
+
+/* Testimonial */
+
+.test{
+border-bottom:2px solid #1F88CA;
+}
+
+.test-arrow{
+border-top-color: #1F88CA;
+}
+
+/* Feature alt */
+
+.afeature:hover{
+border:5px solid #1F88CA;
+}
+
+.afmatter i{
+color:#1F88CA;
+}
+
+.rpost1:hover,.rpost2:hover{
+border-bottom:2px solid #1F88CA;
+}
+
+.accordion-heading i{
+color:#1F88CA;
+}
+
+.process i{
+color:#1F88CA;
+}
+
+.process-meta span{
+background:#1F88CA;
+}
+
+.feat h4 i{
+color:#1F88CA;
+}
+
+.content ul li{
+background-image:url('../img/list-b.png');
+}
+
+.blog .meta i{
+color:#1F88CA;
+}
+
+.posts .tags a{
+background:#1F88CA;
+border:1px solid #29a1c4;
+border-bottom:3px solid #29a1c4;
+}
+
+.posts .tags a:hover{
+border-bottom:3px solid #1F88CA;
+background:#29a1c4;
+border:1px solid #29a1c4;
+}
+
+.paging a:hover{
+background: #1F88CA;
+border:1px solid #29a1c4;
+}
+
+.paging .current{
+background: #1F88CA;
+border:1px solid #29a1c4;
+}
+
+.serv .simg i{
+color:#1F88CA;
+}
+
+.button a, .button a:visited{
+background:#1F88CA;
+border-bottom:2px solid #29a1c4;
+}
+
+.button a:hover{
+background:#29a1c4;
+}
+
+.pricel .phead-top{
+background:#1F88CA;
+border:1px solid #29a1c4;
+}
+
+.pricel .phead-bottom{
+border-top:1px solid #29a1c4;
+}
+
+.nav-tabs > li > a:hover{
+background:#1F88CA;
+}
+
+.about .asocial i{
+background:#1F88CA;
+}
+
+.resume h4{
+background:#1F88CA;
+}
+
+.resume h5{
+color:#1F88CA;
+}
+
+footer ul li{
+background-image:url('../img/list-b.png');
+}
