@@ -7,7 +7,7 @@
 		<Configuration>Release</Configuration>
 		<Platform>Any CPU</Platform>
 		<MSBuildProperties>Configuration=$(Configuration);Platform=$(Platform)</MSBuildProperties>
-		<WebProject>$(BaseDir)\Integer.Web\Integer.Web.csproj</WebProject>
+		<WebProject>$(BaseDir)\Web2\Web.csproj</WebProject>
 	</PropertyGroup>
 	
 	<UsingTask 
@@ -20,7 +20,7 @@
 	
 	<ItemGroup>    
 		<SolutionFile 
-			Include="$(BaseDir)\Integer.sln" />					
+			Include="$(BaseDir)\Web.sln" />					
 	</ItemGroup>
 	
 	<Target Name="Clean">
