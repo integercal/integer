@@ -13,7 +13,6 @@ using Web.Infra;
 using System.Web.Http.ModelBinding;
 using Integer.Domain.Paroquia;
 using Integer.Domain.Agenda.Exceptions;
-using DbC;
 using Integer.Infrastructure.Exceptions;
 using Integer.Infrastructure.Repository.Indexes;
 

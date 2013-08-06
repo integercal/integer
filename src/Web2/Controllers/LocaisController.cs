@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using DbC;
 using Integer.Domain.Paroquia;
 using Raven.Abstractions.Data;
 using Web.Infra.AutoMapper;
