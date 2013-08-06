@@ -57,7 +57,7 @@
 	</Target>		
 
 	<Target Name="Test" DependsOnTargets="Build">
-		<NUnit ToolPath="$(BuildToolsDir)\Nunit\binaries" DisableShadowCopy="true" Assemblies="@(TestAssemblies)" OutputXmlFile="test-results.xml" />
+		<xunit Assembly="Test\bin\$(Configuration)\Integer.UnitTests.dll" />
 	</Target>
 	
 </Project>
