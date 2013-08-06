@@ -62,7 +62,7 @@ namespace Web.Controllers
                 });
         }
 
-        public HttpResponseMessage Delete(string id) 
+        public HttpResponseMessage Delete(string id)  
         {
             var existingLocal = RavenSession.Load<Local>(id);
             RavenSession.Delete<Local>(existingLocal);
