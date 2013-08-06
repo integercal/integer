@@ -57,7 +57,7 @@
 	</Target>		
 
 	<Target Name="Test" DependsOnTargets="Build">
-		<Xunit.Runner.MSBuild.xunit Assembly="Test\bin\$(Configuration)\Integer.UnitTests.dll" />
+		<Xunit.Runner.MSBuild.xunit Assembly="$(BaseDir)\Test\bin\$(Configuration)\Integer.UnitTests.dll" />
 	</Target>
 	
 </Project>
