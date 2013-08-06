@@ -11,7 +11,7 @@
 	</PropertyGroup>
 	
 	<UsingTask
-		AssemblyFile="$(BuildToolsDir)\Tools\xUnit\xunit.runner.msbuild.dll"
+		AssemblyFile="$(BuildToolsDir)\xUnit\xunit.runner.msbuild.dll"
 		TaskName="Xunit.Runner.MSBuild.xunit"/>
 	
 	<UsingTask 
