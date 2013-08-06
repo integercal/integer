@@ -10,9 +10,9 @@
 		<WebProject>$(BaseDir)\Web2\Web.csproj</WebProject>
 	</PropertyGroup>
 	
-	<UsingTask 
-		AssemblyFile="$(BuildToolsDir)\MSBuildCommunityTasks\MSBuild.Community.Tasks.dll" 
-		TaskName="MSBuild.Community.Tasks.NUnit" />
+	<UsingTask
+		AssemblyFile="$(BuildToolsDir)\Tools\xUnit\xunit.runner.msbuild.dll"
+		TaskName="Xunit.Runner.MSBuild.xunit"/>
 	
 	<UsingTask 
 		AssemblyFile="$(ProgramW6432)\NCover\Build Task Plugins\NCover.MSBuildTasks.dll"
