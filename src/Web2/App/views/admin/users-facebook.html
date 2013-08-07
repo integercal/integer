@@ -1,2 +1,10 @@
-﻿FB
-<div ng-repeat="user in existingUsers | filter:queryUsers | orderBy:'name'">{{user.name}} - {{user.email}}</div>
+﻿
+<div class="row-fluid">
+    <ul class="thumbnails">
+        <li class="span3" style="width:200px;" ng-repeat="user in existingUsers | filter:queryUsers | orderBy:'name'">
+            <a href="//facebook.com/{{user.username}}" target="_blank" class="thumbnail">
+                <img style="width: 200px; height: 200px;" src="//graph.facebook.com/{{user.username}}/picture?type=large">
+            </a>
+        </li>
+    </ul>
+</div>
