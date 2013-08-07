@@ -60,9 +60,6 @@ angular.module('integerApp.directives', [])
             link: function (scope, elem, attrs, ctrl) {
                 var otherInput = elem.inheritedData("$formController")[attrs.repeatPassword];
 
-                console.log("otherInput");
-                console.log(otherInput);
-
                 ctrl.$parsers.push(function (value) {
                     if (value === otherInput.$viewValue) {
                         ctrl.$setValidity("repeat", true);

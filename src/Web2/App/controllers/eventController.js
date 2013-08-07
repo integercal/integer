@@ -1,8 +1,8 @@
 ﻿define(function () {
     'use strict';
 
-    return ['$scope', '$q', '$location', '$routeParams', 'facebook', '$i18next', 'eventData', 'eventTypeData', 'groupData', 'localData', 'userData', 'currentEvent',
-        function ($scope, $q, $location, $routeParams, facebook, $i18next, eventData, eventTypeData, groupData, localData, userData, currentEvent) {
+    return ['$scope', '$q', '$location', 'facebook', '$i18next', 'eventData', 'eventTypeData', 'groupData', 'localData', 'userData', 'currentEvent',
+        function ($scope, $q, $location, facebook, $i18next, eventData, eventTypeData, groupData, localData, userData, currentEvent) {
 
             $scope.validationMessage = "";
             var blankEvent = {

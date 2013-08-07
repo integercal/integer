@@ -30,11 +30,19 @@ namespace Integer.Domain.Acesso
 
         public void TrocarSenha(Guid token, string usuarioId, string senha)
         {
-            var usuario = usuarios.Com(u => u.Id == usuarioId);
+            var usuario = usuarios.ComId(usuarioId);
             if (usuario == null)
                 throw new UsuarioInexistenteException();
 
             usuario.TrocarSenha(senha, token);
+        }
+
+        public void DesativarToken(string usuarioId, Guid codigoToken)
+        {
+            Usuario usuario = usuarios.ComId(usuarioId);
+            var token = usuario.Tokens.FirstOrDefault(t => t.Codigo == codigoToken);
+
+            token.Desativar();
         }
     }
 }

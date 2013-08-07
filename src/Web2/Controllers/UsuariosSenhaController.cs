@@ -12,6 +12,7 @@ using Web.Infra.AutoMapper;
 using Web2.Models;
 using Integer.Infrastructure.I18n;
 using Web.Models;
+using Integer.Infrastructure.Criptografia;
 
 namespace Web.Controllers
 {
@@ -30,6 +31,24 @@ namespace Web.Controllers
         public HttpResponseMessage Post(string email) 
         {
             trocaSenhaService.EnviarSenha(email);
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [AllowAnonymous]
+        public HttpResponseMessage Put(string id, Guid token, string newPassword)
+        {
+            var userId = Encryptor.Decrypt(id);
+            trocaSenhaService.TrocarSenha(token, userId, newPassword);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [AllowAnonymous]
+        public HttpResponseMessage Delete(string id, Guid token)
+        {
+            var userId = Encryptor.Decrypt(id);
+            trocaSenhaService.DesativarToken(userId, token);
+
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }

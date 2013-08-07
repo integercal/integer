@@ -20,6 +20,11 @@ namespace Integer.Infrastructure.Repository
             this.documentSession = documentSession;
         }
 
+        public Usuario ComId(string id) 
+        {
+            return documentSession.Load<Usuario>(id);
+        }
+
         public Usuario Com(Expression<Func<Usuario, bool>> condicao)
         {
             return documentSession.Query<Usuario>().FirstOrDefault(condicao);

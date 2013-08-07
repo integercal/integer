@@ -18,7 +18,7 @@
                     );
 		        });
 		    }])
-            .controller('UserForgotController', ['$scope', '$i18next', 'passwordData', function ($scope, $i18next, passwordData) {
+            .controller('UserForgotController', ['$scope', '$i18next', '$routeParams', '$location', 'passwordData', 'willChange', function ($scope, $i18next, $routeParams, $location, passwordData, willChange) {
                 require(['controllers/userForgotController'], function (controller) {
                     angular.injector(['ng']).invoke(
                         controller,
@@ -26,7 +26,10 @@
                         {
                             '$scope': $scope,
                             '$i18next': $i18next,
-                            'passwordData': passwordData
+                            '$routeParams': $routeParams,
+                            '$location': $location,
+                            'passwordData': passwordData,
+                            'willChange': willChange
                         }
                     );
                 });
@@ -131,8 +134,8 @@
                     );
  	            });
  	        }])
- 	        .controller('EventController', ['$scope', '$q', '$location', '$routeParams', 'facebook', '$i18next', 'eventData', 'eventTypeData', 'groupData', 'localData', 'userData', 'currentEvent',
- 	        function ($scope, $q, $location, $routeParams, facebook, $i18next, eventData, eventTypeData, groupData, localData, userData, currentEvent) {
+ 	        .controller('EventController', ['$scope', '$q', '$location', 'facebook', '$i18next', 'eventData', 'eventTypeData', 'groupData', 'localData', 'userData', 'currentEvent',
+ 	        function ($scope, $q, $location, facebook, $i18next, eventData, eventTypeData, groupData, localData, userData, currentEvent) {
  	                require(['controllers/eventController'], function (controller) {
  	                    angular.injector(['ng']).invoke(
                             controller,
@@ -140,7 +143,6 @@
                             {
                                 '$scope': $scope,
                                 '$location': $location,
-                                '$routeParams': $routeParams,
                                 'facebook': facebook,
                                 '$i18next': $i18next,
                                 'eventData': eventData,

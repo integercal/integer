@@ -9,6 +9,7 @@ namespace Integer.Domain.Acesso
 {
     public interface Usuarios
     {
+        Usuario ComId(string id);
         Usuario Com(Expression<Func<Usuario, bool>> condicao);
         void Salvar(Usuario usuario);
         Usuario ComToken(Guid guid);

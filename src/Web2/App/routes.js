@@ -101,11 +101,35 @@
         });
         $routeProvider.when('/esqueci', {
             templateUrl: '/app/views/user-passwordforgot.html',
-            controller: 'UserForgotController'
+            controller: 'UserForgotController',
+            resolve: {
+                willChange: function () {
+                    return undefined;
+                }
+            }
         });
         $routeProvider.when('/trocar', {
             templateUrl: '/app/views/user-passwordchange.html',
-            controller: 'UserForgotController'
+            controller: 'UserForgotController',
+            resolve: {
+                willChange: function ($route, $q, passwordData) {
+                    var deferred = $q.defer();
+                    var reset = $route.current.params.reset;
+                    if (reset === 'true') {
+                        deferred.resolve(true);
+                    }
+                    else {
+                        var id = $route.current.params.id;
+                        var token = $route.current.params.token;
+                        passwordData.cancel({ id: id, token: token }).then(function () {
+                            deferred.resolve(false);
+                        }, function () {
+                            deferred.reject();
+                        });
+                    }
+                    return deferred.promise;
+                }
+            }
         });
         $routeProvider.otherwise({ redirectTo: '/' });
     });
