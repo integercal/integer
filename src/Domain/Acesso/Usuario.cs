@@ -11,16 +11,21 @@ namespace Integer.Domain.Acesso
     {
         protected Usuario() 
         {
+            Senha = CreatePassword();
             Tokens = new List<UsuarioToken>();
             Ativo = true;
             DataCriacao = DateTime.Now;
         }
 
-        public Usuario(string Nome, string email, string senha, string grupoId) : this()
+        public Usuario(string email, string nome) : this(email, nome, null) 
         {
-            this.Nome = Nome;
+            Role = "admin";
+        }
+
+        public Usuario(string email, string nome, string grupoId) : this()
+        {
+            this.Nome = nome;
             this.Email = email;
-            this.Senha = Encryptor.Encrypt(senha);
             this.GrupoId = grupoId;
             PrecisaTrocarSenha = true;
             Role = "agente";
@@ -77,7 +82,7 @@ namespace Integer.Domain.Acesso
 
         public Guid CriarTokenParaLogin()
         {
-            var tokenValido = Tokens.FirstOrDefault(t => t.EstaValido);
+            var tokenValido = Tokens.OrderByDescending(t => t.Validade).FirstOrDefault(t => t.EstaValido);
             if (tokenValido == null)
             {
                 tokenValido = new UsuarioToken(DateTime.Now.AddYears(1));
@@ -93,6 +98,24 @@ namespace Integer.Domain.Acesso
             Genero = gender;
             Nome = name;
             Username = username;
+        }
+
+        public void Alterar(string email, string name)
+        {
+            Email = email;
+            Nome = name;
+        }
+
+        private string CreatePassword()
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var result = new string(
+                Enumerable.Repeat(chars, 8)
+                          .Select(s => s[random.Next(s.Length)])
+                          .ToArray());
+
+            return result;
         }
     }
 }

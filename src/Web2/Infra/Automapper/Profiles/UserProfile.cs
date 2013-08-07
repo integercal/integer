@@ -17,6 +17,13 @@ namespace Web.Infra.AutoMapper.Profiles
             Mapper.CreateMap<Usuario, CurrentUserModel>()
                 .ForMember(x => x.Name, o => o.MapFrom(m => m.Nome))
                 .ForMember(x => x.GroupId, o => o.MapFrom(m => m.GrupoId));
+
+            Mapper.CreateMap<Usuario, UserModel>()
+                .ForMember(x => x.Name, o => o.MapFrom(m => m.Nome))
+                .ForMember(x => x.Active, o => o.MapFrom(m => m.Ativo))
+                .ForMember(x => x.GroupId, o => o.MapFrom(m => m.GrupoId))
+                .ForMember(x => x.DateCreation, o => o.MapFrom(m => m.DataCriacao))
+                .ForMember(x => x.Gender, o => o.MapFrom(m => m.Genero));
         }
     }
 }

@@ -103,6 +103,7 @@ namespace Web
         {
             config.MessageHandlers.Add(new BasicAuthenticationHandler());
             config.Filters.Add(new ExceptionFilter());
+            config.Filters.Add(new TransactionFilter());
         }
     }
 }

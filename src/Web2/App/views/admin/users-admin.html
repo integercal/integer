@@ -1,0 +1,60 @@
+﻿
+<div ng-controller="UserAdminController">
+    <p>
+        <button class="btn btn-primary" ng-click="addAdmin()" ng-i18next="global.add"></button>
+    </p>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th class="span4" ng-i18next="userForm.name"></th>
+            <th class="span4" ng-i18next="userForm.email"></th>
+            <th class="span2" ng-i18next="userForm.status" style="text-align:center;"></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in existingUsers | filter:queryUsers | orderBy:'name'">
+                <td>
+                    <span>{{user.name}}</span>
+                </td>
+                <td>
+                    <span>{{user.email}}</span>
+                </td>
+                <td style="text-align:center;">
+                    <span class="label label-success" ng-show="user.active" ng-i18next="userForm.active"></span>
+                    <span class="label" ng-show="!user.active" ng-i18next="userForm.inactive"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div ng-class="(isEditing == true) ? 'modal-backdrop fade in' : ''"></div>
+    <div ng-class="(isEditing == true) ? 'modal fade in' : 'hide fade'">
+        <div class="modal-header">
+            <h3><span ng-i18next="userAddModal.title"></span></h3>
+        </div>
+        <div class="modal-body">
+            <form name="userForm">
+                <div class="row-fluid">
+                    <div class="alert" ng-show="validationMessage != null && validationMessage != ''" ng-animate="{show: 'fade'}">
+                        <button type="button" class="close" ng-click="closeAlert()">&times;</button>
+                        <span ng-bind-html-unsafe="validationMessage"></span>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <label class="pull-left" ng-i18next="userAddModal.name"></label>
+                    <span ng-show="formSubmitted && userForm.name.$error.required" class="text-error" ng-i18next="global.required"></span>
+                    <input name="name" type="text" class="input-block-level" ng-model="currentEditing.name" required />
+
+                    <label class="pull-left" ng-i18next="userAddModal.email"></label>
+                    <span ng-show="formSubmitted && userForm.email.$error.required" class="text-error" ng-i18next="global.required"></span>
+                    <span ng-show="formSubmitted && userForm.email.$error.email" class="text-error" ng-i18next="global.emailInvalid"></span>
+                    <input name="email" type="email" class="input-block-level" ng-model="currentEditing.email" required />
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="javascript:void(0)" class="btn" ng-click="cancelEditAdmin()" ng-i18next="global.cancel"></a>
+            <a href="#" class="btn btn-primary" ng-click="save(userForm)" ng-i18next="global.save"></a>
+      </div>
+    </div>
+</div>

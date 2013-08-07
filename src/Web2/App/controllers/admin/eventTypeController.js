@@ -13,7 +13,7 @@
             var init = function () {
                 $scope.newType = angular.copy(blankType);
                 $scope.existingTypes = existingTypes;
-                //$scope.$apply();
+                $scope.$apply();
             };
 
             $scope.edit = function (type) {

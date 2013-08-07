@@ -153,6 +153,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IntegerConfig.cs" />
+    <Compile Include="Controllers\UsuariosSenhaController.cs" />
     <Compile Include="Controllers\IntegerController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\TiposDeEventoController.cs" />
@@ -163,17 +164,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\UriHelperExtensions.cs" />
     <Compile Include="Infra\Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="Infra\Automapper\AutoMapperExtensions.cs" />
     <Compile Include="Infra\Automapper\Profiles\GroupProfile.cs" />
     <Compile Include="Infra\Automapper\Profiles\LocalProfile.cs" />
     <Compile Include="Infra\Automapper\Profiles\UserProfile.cs" />
     <Compile Include="Infra\Automapper\Profiles\EventoProfile.cs" />
+    <Compile Include="Infra\TransactionFilter.cs" />
     <Compile Include="Infra\DateTimeExtensions.cs" />
     <Compile Include="Infra\ExceptionFilter.cs" />
     <Compile Include="Infra\Raven\AgendaEventoService.cs" />
+    <Compile Include="Infra\Raven\AlteraUsuarioService.cs" />
+    <Compile Include="Infra\Raven\CriaUsuarioService.cs" />
     <Compile Include="Infra\Raven\EventoExtensions.cs" />
     <Compile Include="Infra\Raven\UsuarioExtensions.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\EventTypeModel.cs" />
     <Compile Include="Models\FacebookUserModel.cs" />
     <Compile Include="Models\GroupModel.cs" />
@@ -189,33 +195,43 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App\controllers\admin\userAdminController.js" />
+    <Content Include="App\controllers\admin\userController.js" />
     <Content Include="App\controllers\admin\eventTypeController.js" />
     <Content Include="App\controllers\admin\groupController.js" />
     <Content Include="App\controllers\calendarController.js" />
     <Content Include="App\controllers.js" />
     <Content Include="App\controllers\admin\localController.js" />
+    <Content Include="App\controllers\userForgotController.js" />
     <Content Include="App\controllers\eventListController.js" />
     <Content Include="App\controllers\eventController.js" />
     <Content Include="App\controllers\headerController.js" />
     <Content Include="App\directives.js" />
     <Content Include="App\lib\http-auth-interceptor.js" />
-    <Content Include="App\locales\en\translation.js" />
+    <Content Include="App\locales\en\translation_later.js" />
     <Content Include="App\locales\pt-BR\translation.js" />
     <Content Include="App\main.js" />
     <Content Include="App\routes.js" />
     <Content Include="App\services.js" />
+    <Content Include="App\services\passwordData.js" />
     <Content Include="App\services\FacebookProvider.js" />
     <Content Include="App\services\groupData.js" />
     <Content Include="App\services\eventTypeData.js" />
     <Content Include="App\services\localData.js" />
     <Content Include="App\services\eventData.js" />
     <Content Include="App\services\userData.js" />
+    <Content Include="App\views\admin\users-admin.html" />
+    <Content Include="App\views\admin\users-facebook.html" />
+    <Content Include="App\views\admin\users-agente.html" />
+    <Content Include="App\views\admin\users.html" />
     <Content Include="App\views\admin\types.html" />
     <Content Include="App\views\admin\groups.html" />
     <Content Include="App\views\admin\locals.html" />
     <Content Include="App\views\calendar.html" />
+    <Content Include="App\views\user-passwordchange.html" />
     <Content Include="App\views\event.html" />
     <Content Include="App\views\eventList.html" />
+    <Content Include="App\views\user-passwordforgot.html" />
     <Content Include="Content\angular-ui.css" />
     <Content Include="Content\angular-ui.min.css" />
     <Content Include="Content\app.css" />
@@ -522,11 +538,16 @@
     <Content Include="Views\MailTemplates\EventoConflito.cshtml" />
     <Content Include="Views\MailTemplates\_Layout.cshtml" />
     <Content Include="Views\MailTemplates\_ViewStart.cshtml" />
+    <Content Include="Views\MailTemplates\TrocarSenha.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{6d72f9ee-9d92-4e5b-a359-79c3a4271154}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Email\Infrastructure.Email.csproj">
+      <Project>{31d10eb2-d5e0-4379-b4d4-b3eeaea6ba6f}</Project>
+      <Name>Infrastructure.Email</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Repository\Infrastructure.Repository.csproj">
       <Project>{e67baa91-5a25-440a-bcbf-c7d9e85c28cf}</Project>

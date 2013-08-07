@@ -119,7 +119,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Acesso\Services\AutenticaUsuarioService.cs" />
     <Compile Include="Acesso\i18n\AcessoResourceWrapper.cs" />
     <Compile Include="Acesso\UsuarioToken.cs" />
     <Compile Include="Acesso\Usuarios.cs" />

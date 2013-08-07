@@ -57,18 +57,6 @@ namespace Integer.UnitTests.Domain.Paroquia
             Assert.Equal(grupoPai.Id, grupo.GrupoPai.Id);
         }
 
-        [Fact]
-        public void PrecisaTrocarSenha() 
-        {
-            Assert.True(grupo.PrecisaCriarUsuario);
-        }
-
-        [Fact]
-        public void Senha_EhPadrao_calendario2013() 
-        {
-            Assert.Equal("calendario2013", grupo.SenhaDescriptografada);
-        }
-
         public void CriarGrupo() 
         {
             grupo = new Grupo(nome, email, cor, grupoPai);

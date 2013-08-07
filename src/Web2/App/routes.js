@@ -21,8 +21,14 @@
             templateUrl: '/app/views/admin/groups.html',
             controller: 'GroupController',
             resolve: {
-                existingGroups: function (groupData) {
-                    return groupData.groups();
+                existingGroups: function (groupData, $q) {
+                    var deferred = $q.defer();
+                    groupData.groups().$then(function (result) {
+                        deferred.resolve(result.data);
+                    }, function (errorData) {
+                        deferred.reject();
+                    });
+                    return deferred.promise;
                 }
             }
         });
@@ -30,8 +36,14 @@
             templateUrl: '/app/views/admin/locals.html',
             controller: 'LocalController',
             resolve: {
-                existingLocals: function (localData) {
-                        return localData.locals();
+                existingLocals: function (localData, $q) {
+                    var deferred = $q.defer();
+                    localData.locals().$then(function (result) {
+                        deferred.resolve(result.data);
+                    }, function (errorData) {
+                        deferred.reject();
+                    });
+                    return deferred.promise;
                 }
             }
         });
@@ -39,14 +51,31 @@
             templateUrl: '/app/views/admin/types.html',
             controller: 'EventTypeController',
             resolve: {
-                existingTypes: function (eventTypeData) {
-                    return eventTypeData.types();
+                existingTypes: function (eventTypeData, $q) {
+                    var deferred = $q.defer();
+                    eventTypeData.types().$then(function (result) {
+                        deferred.resolve(result.data);
+                    }, function (errorData) {
+                        deferred.reject();
+                    });
+                    return deferred.promise;
                 }
             }
         });
         $routeProvider.when('/usuarios', {
             templateUrl: '/app/views/admin/users.html',
-            controller: 'UserController'
+            controller: 'UserController',
+            resolve: {
+                existingUsers: function (userData, $q) {
+                    var deferred = $q.defer();
+                    userData.users().$then(function (result) {
+                        deferred.resolve(result.data);
+                    }, function (errorData) {
+                        deferred.reject(); 
+                    });
+                    return deferred.promise;
+                }
+            }
         });
         $routeProvider.when('/evento', {
             templateUrl: '/app/views/event.html',
@@ -69,6 +98,14 @@
                         return null;
                 }
             }
+        });
+        $routeProvider.when('/esqueci', {
+            templateUrl: '/app/views/user-passwordforgot.html',
+            controller: 'UserForgotController'
+        });
+        $routeProvider.when('/trocar', {
+            templateUrl: '/app/views/user-passwordchange.html',
+            controller: 'UserForgotController'
         });
         $routeProvider.otherwise({ redirectTo: '/' });
     });

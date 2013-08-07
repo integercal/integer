@@ -64,16 +64,17 @@ namespace Integer.Infrastructure.Tasks
                 var to = new MailAddress(sendTo);
             #endif
 
-                var mailMessage = new MailMessage(from, to)
-                              {
-                                  IsBodyHtml = true,
-                                  Body = stringWriter.GetStringBuilder().ToString(),
-                                  Subject = subject
-                              };            
+            var mailMessage = new MailMessage(from, to)
+                            {
+                                IsBodyHtml = true,
+                                Body = stringWriter.GetStringBuilder().ToString(),
+                                Subject = subject
+                            };
 
-            using (var smtpClient = new SmtpClient("mail.carnation.arvixe.com"))
+            var smtpClient = new SmtpClient("smtp.gmail.com", 587) { EnableSsl = true };
+            using (smtpClient)
             {
-                smtpClient.Credentials = new NetworkCredential("nao-responda@calendarioparoquial.com.br", "lVONvMhaIH9v");
+                smtpClient.Credentials = new NetworkCredential("contato@calendarioparoquial.com.br", "PlaBeno2");
                 smtpClient.Send(mailMessage);
             }
         }

@@ -41,13 +41,16 @@
                         <label class="pull-left" ng-i18next="eventForm.subjectLabel"></label>
                         <span ng-show="formSubmitted && eventForm.subject.$error.required" class="text-error" ng-i18next="global.required"></span>
                         <input name="subject" type="text" class="input-block-level" ng-model="currentEvent.subject" required />
+
                         <label ng-i18next="eventForm.descriptionLabel"></label>
                         <textarea rows="3" class="input-block-level" ng-model="currentEvent.description"></textarea>
+
                         <label class="pull-left" ng-i18next="eventForm.eventTypeLabel"></label>
                         <span ng-show="formSubmitted && eventForm.eventType.$error.required" class="text-error" ng-i18next="global.required"></span>
                         <select name="eventType" class="input-block-level" ng-model="currentEvent.eventType" ng-options="t.name for t in eventTypes" required>
                             <option ng-i18next="global.selectOption"></option>
                         </select>
+
                         <div ng-show="groups.length > 0">
                             <label class="pull-left" ng-i18next="eventForm.groupLabel"></label>
                             <span ng-show="formSubmitted && eventForm.group.$error.required" class="text-error" ng-i18next="global.required"></span>

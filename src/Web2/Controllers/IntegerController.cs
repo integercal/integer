@@ -25,31 +25,11 @@ namespace Web.Controllers
 
         public override Task<HttpResponseMessage> ExecuteAsync(HttpControllerContext controllerContext, CancellationToken cancellationToken)
         {
-            // TODO multi-tenancy (wait RavenHQ response)
-            //var host = controllerContext.Request.Headers.Host;
-            //string subdomain = "";
-
-            //var index = host.IndexOf(".");
-            //if (index >= 0)
-            //{
-            //    subdomain = host.Substring(0, index);
-            //}
-            //RavenSession = DocumentStoreHolder.DocumentStore.OpenSession(subdomain);
+            // TODO multi-tenancy with subdomain
+            
             RavenSession = IntegerConfig.CurrentSession;
 
-            return base.ExecuteAsync(controllerContext, cancellationToken)
-                .ContinueWith(task =>
-                {
-                    using (RavenSession) 
-                    {
-                        if (task.Status != TaskStatus.Faulted && RavenSession != null && DoNotCallSaveChanges == false)
-                        {
-                            RavenSession.SaveChanges();
-                            TaskExecutor.StartExecuting();
-                        }
-                    }
-                    return task;
-                }).Unwrap();
+            return base.ExecuteAsync(controllerContext, cancellationToken);
         }
     }
 }

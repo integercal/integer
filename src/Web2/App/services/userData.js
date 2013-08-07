@@ -7,10 +7,16 @@
 
         var User = $resource(REST_HOST + '/usuarios/:id', { id: '@id' }, {
             get: { method: 'GET', params: { token: '@token' } },
-            loginAdmin: { method: 'POST', params: { email: '@email', senha: '@senha' } },
+            insert: { method: 'POST' },
+            update: { method: 'PUT' },
+            loginAdmin: { method: 'GET', params: { email: '@email', senha: '@senha' } },
             loginFromFacebook: { method: 'PUT', params: { facebookData: '@facebookData' } }
         });
         self.current;
+
+        self.users = function () {
+            return User.query();
+        }
 
         self.isAuthenticated = function () {
             return !!self.current;
@@ -56,6 +62,32 @@
         self.logout = function () {
             self.current = null;
             $rootScope.$broadcast('event:logout');
+        }
+
+        self.insert = function (user) {
+            var deferred = $q.defer();
+            User.insert(user,
+                function (key) {
+                    deferred.resolve(key);
+                },
+                function (response) {
+                    deferred.reject(response);
+                });
+
+            return deferred.promise;
+        }
+
+        self.update = function (user) {
+            var deferred = $q.defer();
+            User.update(user,
+                function (key) {
+                    deferred.resolve(key);
+                },
+                function (response) {
+                    deferred.reject(response);
+                });
+
+            return deferred.promise;
         }
 
         return self;

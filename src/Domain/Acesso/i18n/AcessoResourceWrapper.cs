@@ -18,5 +18,21 @@ namespace Integer.Domain.Acesso
                 return AcessoResource.InvalidLogin;
             } 
         }
+
+        public static string ExistingUserWithEmail
+        {
+            get
+            {
+                return AcessoResource.ExistingUserWithEmail;
+            }
+        }
+
+        public static string UserNotFound
+        {
+            get
+            {
+                return AcessoResource.UserNotFound;
+            }
+        }
     }
 }

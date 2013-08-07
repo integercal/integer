@@ -26,22 +26,18 @@ namespace Web.Controllers
             this.grupos = grupos;
         }
 
+        public HttpResponseMessage Get()
+        {
+            var existing = RavenSession.Query<Usuario>().ToList().OrderBy(l => l.Role);
+            return Request.CreateResponse(HttpStatusCode.OK, existing.MapTo<UserModel>());
+        }
+
         [AllowAnonymous]
-        public HttpResponseMessage Post(string email, string senha) 
+        public HttpResponseMessage Get(string email, string senha) 
         {
             Usuario usuario = RavenSession.ObterUsuario(email, senha);
             if (usuario == null)
-            {
-                Grupo grupo = grupos.Com(g => g.Email == email);
-                if (grupo != null && grupo.PrecisaCriarUsuario && grupo.ValidarSenha(senha))
-                {
-                    usuario = RavenSession.CriarUsuario(grupo.Nome, grupo.Email, grupo.Senha, grupo.Id);
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.Forbidden, new { Error = AcessoResourceWrapper.InvalidLogin });
-                }
-            }
+                return Request.CreateResponse(HttpStatusCode.Forbidden, new { Error = AcessoResourceWrapper.InvalidLogin });
 
             return Request.CreateResponse(HttpStatusCode.OK, new { Token = usuario.CriarTokenParaLogin() });
         }
@@ -65,6 +61,19 @@ namespace Web.Controllers
                 usuario.Alterar(facebookUserModel.Email, facebookUserModel.FacebookId, facebookUserModel.Gender, facebookUserModel.Name, facebookUserModel.Username);
 
             return Request.CreateResponse(HttpStatusCode.OK, new { Token = usuario.CriarTokenParaLogin() });
+        }
+
+        public HttpResponseMessage Post(UserModel user) 
+        {
+            var newUser = RavenSession.CriarUsuario(user.Email, user.Name);
+            return Request.CreateResponse(HttpStatusCode.OK, newUser.MapTo<UserModel>());
+        }
+
+        public HttpResponseMessage Put(UserModel user)
+        {
+            RavenSession.AlterarUsuario(user.Id, user.Email, user.Name);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

@@ -24,7 +24,7 @@ define([
                 lng: navigator.language || navigator.userLanguage,
                 useCookie: false,
                 useLocalStorage: false,
-                fallbackLng: 'pt',
+                fallbackLng: 'pt-BR',
                 resGetPath: '/app/locales/__lng__/__ns__.js'
             };
         })

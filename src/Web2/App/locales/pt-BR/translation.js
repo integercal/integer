@@ -1,8 +1,11 @@
 ﻿{
     "global":{
         "required": "obrigatório",
+        "emailInvalid": "e-mail inválido",
         "save": "Salvar",
-        "selectOption": "Selecione"
+        "selectOption": "Selecione",
+        "add": "Adicionar",
+        "cancel": "Cancelar"
     },
     "loginChoice":{
         "button": "Login",
@@ -90,5 +93,42 @@
         "priority": "Prioridade",
         "name": "Nome",
         "saveSuccess": "Tipo de evento salvo com sucesso!"
+    },
+    
+    "userTab":{
+        "agent": "Agentes de Pastoral",
+        "facebook": "Conectados pelo Facebook",
+        "admin": "Administradores"
+    },
+
+    "userForm":{
+        "name": "Nome",
+        "email": "E-mail",
+        "status": "Status",
+        "group": "Grupo",
+        "active": "Ativo",
+        "inactive": "Inativo"
+    },
+
+    "userAgent":{
+        "obs": "* Cada pastoral/grupo possui somente um usuário. Para adicionar um novo usuário, adicione um novo grupo."
+    },
+
+    "userAddModal":{
+        "title": "Adicionar administrador",
+        "name": "Nome",
+        "email": "E-mail",
+        "saveSuccess": "Administrador salvo com sucesso!"
+    },
+
+    "forgotPassword":{
+        "title": "Esqueceu sua senha?",
+        "titleChange": "Crie uma nova senha",
+        "explanation": "Informe abaixo seu e-mail de cadastro e nós vamos lhe enviar as informações para que você crie outra senha.",
+        "sendSuccess": "E-mail enviado com sucesso!",
+        "changeSuccess": "Senha modificada com sucesso!",
+        "password": "Senha",
+        "passwordAgain": "Repita a senha",
+        "shouldBeEqual": "está diferente"
     }
 }

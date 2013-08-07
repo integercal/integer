@@ -15,7 +15,7 @@ namespace Integer.Domain.Acesso
         }
 
         public Guid Codigo { get; private set; }
-        private DateTime Validade { get; set; }
+        public DateTime Validade { get; private set; }
 
         public bool EstaValido 
         {

@@ -1,7 +1,7 @@
 ﻿define(function () {
     'use strict';
 
-    return ['$scope', '$cookieStore', 'facebook', 'userData', function ($scope, $cookieStore, facebook, userData) {
+    return ['$scope', '$location', '$cookieStore', 'facebook', 'userData', function ($scope, $location, $cookieStore, facebook, userData) {
         
         $scope.user = {};
         $scope.currentUser = {};
@@ -54,5 +54,10 @@
             $scope.isAuthenticated = !!currentUser;
             $scope.isFacebookUser = currentUser && !!currentUser.username;
         });
+
+        $scope.forgotPassword = function () {
+            $scope.resetForm();
+            $location.path("/esqueci");
+        }
     }]
 });

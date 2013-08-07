@@ -1,0 +1,19 @@
+﻿
+<div class="white-wrapper">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="javascript:void(0)" ng-click="clickTab('agente')" data-toggle="tab" ng-i18next="userTab.agent"></a></li>
+        <li><a href="javascript:void(0)" ng-click="clickTab('paroquiano')" data-toggle="tab" ng-i18next="userTab.facebook"></a></li>
+        <li><a href="javascript:void(0)" ng-click="clickTab('admin')" data-toggle="tab" ng-i18next="userTab.admin"></a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane in" ng-class="{'active': activeTab == 'agente' || activeTab == undefined}" id="agent">
+            <div ng-include="'/app/views/admin/users-agente.html'"></div>
+        </div>
+        <div class="tab-pane in" ng-class="{'active': activeTab == 'paroquiano'}" id="facebook">
+            <div ng-include="'/app/views/admin/users-facebook.html'"></div>
+        </div>
+        <div class="tab-pane in" ng-class="{'active': activeTab == 'admin'}" id="admin">
+            <div ng-include="'/app/views/admin/users-admin.html'"></div>
+        </div>
+    </div>
+</div>

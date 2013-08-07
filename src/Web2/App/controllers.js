@@ -2,13 +2,14 @@
  	function () {  
 
  	    return angular.module('integerApp.controllers', ['integerApp.services', 'FacebookProvider', 'jm.i18next'])
-		    .controller('HeaderController', ['$scope', '$rootScope', '$cookieStore', 'facebook', 'userData', function ($scope, $rootScope, $cookieStore, facebook, userData) {
+		    .controller('HeaderController', ['$scope', '$location', '$rootScope', '$cookieStore', 'facebook', 'userData', function ($scope, $location, $rootScope, $cookieStore, facebook, userData) {
 		        require(['controllers/headerController'], function (controller) {
 		            angular.injector(['ng']).invoke(
                         controller,
                         this,
                         {
                             '$scope': $scope,
+                            '$location': $location,
                             '$rootScope': $rootScope,
                             '$cookieStore': $cookieStore,
                             'facebook': facebook,
@@ -17,6 +18,19 @@
                     );
 		        });
 		    }])
+            .controller('UserForgotController', ['$scope', '$i18next', 'passwordData', function ($scope, $i18next, passwordData) {
+                require(['controllers/userForgotController'], function (controller) {
+                    angular.injector(['ng']).invoke(
+                        controller,
+                        this,
+                        {
+                            '$scope': $scope,
+                            '$i18next': $i18next,
+                            'passwordData': passwordData
+                        }
+                    );
+                });
+            }])
  	        .controller('CalendarController', ['$scope', 'eventData', 'userData', '$location', '$i18next',
  	        function ($scope, eventData, userData, $location, $i18next) {
  	                require(['controllers/calendarController'], function (controller) {
@@ -59,6 +73,35 @@
                             '$i18next': $i18next,
                             'groupData': groupData,
                             'existingGroups': existingGroups
+                        }
+                    );
+ 	            });
+ 	        }])
+            .controller('UserController', ['$scope', '$i18next', 'userData', 'existingUsers',
+ 	        function ($scope, $i18next, userData, existingUsers) {
+ 	            require(['controllers/admin/userController'], function (controller) {
+ 	                angular.injector(['ng']).invoke(
+                        controller,
+                        this,
+                        {
+                            '$scope': $scope,
+                            '$i18next': $i18next,
+                            'userData': userData,
+                            'existingUsers': existingUsers
+                        }
+                    );
+ 	            });
+ 	        }])
+            .controller('UserAdminController', ['$scope', '$i18next', 'userData',
+ 	        function ($scope, $i18next, userData) {
+ 	            require(['controllers/admin/userAdminController'], function (controller) {
+ 	                angular.injector(['ng']).invoke(
+                        controller,
+                        this,
+                        {
+                            '$scope': $scope,
+                            '$i18next': $i18next,
+                            'userData': userData
                         }
                     );
  	            });

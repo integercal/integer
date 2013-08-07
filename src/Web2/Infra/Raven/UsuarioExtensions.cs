@@ -15,14 +15,6 @@ namespace Web.Infra.Raven
             return session.Query<Usuario>().FirstOrDefault(u => u.Email == email && u.Senha == Encryptor.Encrypt(senha) && u.Ativo);
         }
 
-        public static Usuario CriarUsuario(this IDocumentSession session, string nome, string email, string senha, string grupoId)
-        {
-            var usuario = new Usuario(nome, email, senha, grupoId);
-            session.Store(usuario);
-
-            return usuario;
-        }
-
         public static Usuario ObterUsuario(this IDocumentSession session, string facebookId)
         {
             return session.Query<Usuario>().FirstOrDefault(u => u.FacebookId == facebookId && u.Ativo);
@@ -34,6 +26,20 @@ namespace Web.Infra.Raven
             session.Store(usuario);
 
             return usuario;
+        }
+
+        public static Usuario CriarUsuario(this IDocumentSession session, string email, string name)
+        {
+            var criaUsuario = new CriaUsuarioService(session);
+            var usuario = criaUsuario.CriarAdmin(email, name);
+            //TODO: send email
+            return usuario;
+        }
+
+        public static void AlterarUsuario(this IDocumentSession session, string id, string email, string nome) 
+        {
+            var alteraUsuario = new AlteraUsuarioService(session);
+            alteraUsuario.Alterar(id, email, nome);
         }
     }
 }

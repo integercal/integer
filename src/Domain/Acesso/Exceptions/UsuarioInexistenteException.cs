@@ -12,7 +12,7 @@ namespace Integer.Domain.Acesso.Exceptions
         {
             get
             {
-                return "Usuário não encontrado";
+                return AcessoResourceWrapper.UserNotFound;
             }
         }
     }

@@ -48,14 +48,14 @@
                     <div class="user-menu dropdown pull-right" ng-show="!isFacebookUser" style="display:none;">
                         <button type="button" id="drop3" role="button" class="btn btn-large dropdown-toggle" data-toggle="dropdown"><span ng-i18next="userMenu.button"></span> <b class="caret"></b></button>
                         <ul class="profileMenu dropdown-menu menu-box">
-                            @*<li><a href="#!/config" ng-i18next="userMenu.config"></a></li>*@
+                            <li><a href="#!/config" ng-i18next="userMenu.config"></a></li>
                             <li class="dropdown-submenu pull-left">
                                 <a tabindex="-1" ng-i18next="userMenu.admin"></a>
                                 <ul class="dropdown-menu">
                                     <li><a tabindex="-1" href="#!/grupos">Grupos</a></li>
                                     <li><a tabindex="-1" href="#!/locais">Locais</a></li>
                                     <li><a tabindex="-1" href="#!/tipos">Tipos de Evento</a></li>
-                                    @*<li><a tabindex="-1" href="#!/usuarios">Usuários</a></li>*@
+                                    <li><a tabindex="-1" href="#!/usuarios">Usuários</a></li>
                                 </ul>
                             </li>
                             <li class="divider"></li>
@@ -78,10 +78,14 @@
                                 </div>
                                 <label ng-i18next="loginForm.emailLabel" class="pull-left"></label><span ng-show="formSubmitted && userForm.email.$error.required" class="text-error" ng-i18next="global.required"></span>
 			                    <input type="text" name="email" ng-model="user.email" required>
-			                    <label ng-i18next="loginForm.passwordLabel" class="pull-left"></label><span ng-show="formSubmitted && userForm.password.$error.required" class="text-error" ng-i18next="global.required"></span>
+			                    
+                                <label ng-i18next="loginForm.passwordLabel" class="pull-left"></label><span ng-show="formSubmitted && userForm.password.$error.required" class="text-error" ng-i18next="global.required"></span>
                                 <input type="password" name="password" ng-model="user.password" required>
-                                <a href="#" ng-i18next="loginForm.forgotLabel"></a>
-			                    <label class="checkbox"><input type="checkbox" ng-model="user.remember" value="1"> <span ng-i18next="loginForm.rememberLabel"></span></label>
+                                
+                                <a href="javascript:void(0)" ng-click="forgotPassword()" ng-i18next="loginForm.forgotLabel"></a>
+			                    
+                                <label class="checkbox"><input type="checkbox" ng-model="user.remember" value="1"> <span ng-i18next="loginForm.rememberLabel"></span></label>
+                                
                                 <button type="submit" class="btn btn-primary" ng-disabled="isLoggingIn" ng-i18next="loginForm.loginButton"></button>
                                 <button type="button" class="btn" ng-click="resetForm()" ng-i18next="loginForm.cancelButton"></button>
                             </div>

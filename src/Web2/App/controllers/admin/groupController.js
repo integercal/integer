@@ -16,11 +16,7 @@
             var init = function () {
                 $scope.newGroup = angular.copy(blankGroup);
                 $scope.rootGroups = [];
-                
-                existingGroups.$then(function (result) {
-                    var groups = result.data;
-                    buildGroupTree(groups);
-                });
+                buildGroupTree(existingGroups);
 
                 $scope.$apply();
             };

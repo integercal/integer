@@ -19,7 +19,7 @@ namespace Integer.Domain.Acesso.Exceptions
         {
             get
             {
-                return String.Format("Já existe um usuário cadastrado com o e-mail '{0}'.", usuario.Email);
+                return String.Format(AcessoResourceWrapper.ExistingUserWithEmail.Replace("#email#", usuario.Email));
             }
         }
     }

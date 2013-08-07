@@ -1,0 +1,26 @@
+﻿
+<p class="text-info"><strong ng-i18next="userAgent.obs"></strong></p>
+
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th class="span4" ng-i18next="userForm.name"></th>
+        <th class="span4" ng-i18next="userForm.email"></th>
+        <th class="span2" ng-i18next="userForm.status" style="text-align:center;"></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="user in existingUsers | filter:queryUsers | orderBy:'name'">
+            <td>
+                <span>{{user.name}}</span>
+            </td>
+            <td>
+                <span>{{user.email}}</span>
+            </td>
+            <td style="text-align:center;">
+                <span class="label label-success" ng-show="user.active" ng-i18next="userForm.active"></span>
+                <span class="label" ng-show="!user.active" ng-i18next="userForm.inactive"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
