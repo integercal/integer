@@ -148,6 +148,7 @@
     <Compile Include="Agenda\Horario.cs" />
     <Compile Include="Agenda\MotivoConflitoEnum.cs" />
     <Compile Include="Acesso\Exceptions\UsuarioInexistenteException.cs" />
+    <Compile Include="Paroquia\Configuracao.cs" />
     <Compile Include="Paroquia\Locais.cs" />
     <Compile Include="Paroquia\Grupos.cs" />
     <Compile Include="Paroquia\Local.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Acesso\Usuario.cs" />
     <Compile Include="Acesso\Exceptions\UsuarioExistenteException.cs" />
     <Compile Include="Paroquia\ParoquiaImpl.cs" />
+    <Compile Include="Paroquia\Plano.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Acesso\Services\TrocaSenhaService.cs" />
     <Compile Include="Agenda\Services\RemoveConflitoService.cs" />

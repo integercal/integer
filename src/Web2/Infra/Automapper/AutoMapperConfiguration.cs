@@ -15,6 +15,7 @@ namespace Web.Infra.AutoMapper
             Mapper.AddProfile(new UserProfile());
             Mapper.AddProfile(new LocalProfile());
             Mapper.AddProfile(new GroupProfile());
+            Mapper.AddProfile(new ConfigProfile());
         }
     }
 }

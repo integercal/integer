@@ -32,6 +32,7 @@ angular.module('integerApp.directives', [])
             }
         }
     })
+
     .directive('colorPicker', function () {
         return {
             restrict: 'A',

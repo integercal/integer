@@ -130,5 +130,22 @@
         "password": "Senha",
         "passwordAgain": "Repita a senha",
         "shouldBeEqual": "está diferente"
+    },
+
+    "configurationForm":{
+        "tabProfile": "Perfil",
+        "tabSettings": "Configurações",
+        "tabPlan": "Plano",
+        "rangeCalendarOpen": "Intervalo de datas aberto para agendamento",
+        "intervalBetweenReserves": "Intervalo de tempo para agendamento de locais",
+        "name": "Nome",
+        "priest": "Pároco",
+        "birth": "Data de criação",
+        "email": "E-mail",
+        "site": "Site",
+        "telephone": "Telefone",
+        "address": "Endereço",
+        "version": "Versão:",
+        "since": "Desde:"
     }
 }

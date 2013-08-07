@@ -1,0 +1,28 @@
+﻿
+<form name="configForm" novalidate>
+    <fieldset>    
+        <div class="row-fluid">
+            <div class="alert" ng-show="validationMessage != null && validationMessage != ''" ng-animate="{show: 'fade'}">
+                <button type="button" class="close" ng-click="closeAlert()">&times;</button>
+                <span ng-bind-html-unsafe="validationMessage"></span>
+            </div>
+        </div>    
+        <p></p>    
+        <div class="row-fluid">
+            <label ng-i18next="configurationForm.rangeCalendarOpen"></label>
+            <input name="start" type="text" class="span2" ng-model="currentParish.scheduleStart" datetime required />
+            até
+            <input name="end" type="text" class="span2" ng-model="currentParish.scheduleEnd" datetime required />
+            <span ng-show="formSubmitted && (configForm.start.$error.required || configForm.end.$error.required)" class="text-error" ng-i18next="global.required"></span>
+            <p></p>
+            <label ng-i18next="configurationForm.intervalBetweenReserves"></label>
+            <input name="interval" type="text" class="span1" ng-model="currentParish.reserveInterval" required /> minutos
+            <span ng-show="formSubmitted && userForm.interval.$error.required" class="text-error" ng-i18next="global.required"></span>
+        </div>    
+        <div class="control-group" style="padding-top:10px;">
+            <div class="controls">
+                <button type="submit" ng-click="sendPassword(userForm)" ng-disabled="isSending" class="btn btn-primary pull-left" ng-i18next="global.save"></button>
+            </div>
+        </div>
+    </fieldset>    
+</form>

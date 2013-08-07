@@ -168,5 +168,20 @@
                             }
                         );
  	                });
+ 	            }])
+ 	        .controller('ConfigController', ['$scope', '$i18next', 'configData', 'currentParish',
+ 	            function ($scope, $i18next, configData, currentParish) {
+ 	                require(['controllers/admin/configController'], function (controller) {
+ 	                    angular.injector(['ng']).invoke(
+                            controller,
+                            this,
+                            {
+                                '$scope': $scope,
+                                '$i18next': $i18next,
+                                'configData': configData,
+                                'currentParish': currentParish
+                            }
+                        );
+ 	                });
  	            }]);
  	});

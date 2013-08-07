@@ -1,0 +1,24 @@
+﻿
+<form name="configForm" novalidate>
+    <fieldset>    
+        <div class="row-fluid">
+            <div class="alert" ng-show="validationMessage != null && validationMessage != ''" ng-animate="{show: 'fade'}">
+                <button type="button" class="close" ng-click="closeAlert()">&times;</button>
+                <span ng-bind-html-unsafe="validationMessage"></span>
+            </div>
+        </div>    
+        <p></p>    
+        <div class="row-fluid">
+            <label class="pull-left" ng-i18next="configurationForm.version"></label>
+            <b>{{currentParish.version}}</b>
+            <p></p>
+            <label class="pull-left" ng-i18next="configurationForm.since"></label>
+            <b>{{currentParish.since | date:'dd/MM/yyyy'}}</b>
+        </div>    
+        <!--<div class="control-group" style="padding-top:10px;">
+            <div class="controls">
+                <button type="submit" ng-click="sendPassword(userForm)" ng-disabled="isSending" class="btn btn-primary pull-left" ng-i18next="global.save"></button>
+            </div>
+        </div>-->
+    </fieldset>    
+</form>

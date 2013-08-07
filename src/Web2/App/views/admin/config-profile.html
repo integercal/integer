@@ -1,0 +1,41 @@
+﻿
+<form name="configForm" novalidate>
+    <fieldset>    
+        <div class="row-fluid">
+            <div class="alert" ng-show="validationMessage != null && validationMessage != ''" ng-animate="{show: 'fade'}">
+                <button type="button" class="close" ng-click="closeAlert()">&times;</button>
+                <span ng-bind-html-unsafe="validationMessage"></span>
+            </div>
+        </div>    
+        <p></p>    
+        <div class="row-fluid">
+            <label ng-i18next="configurationForm.name"></label>
+            <input name="name" type="text" class="span6" ng-model="currentParish.name" datetime required />
+            <span ng-show="formSubmitted && configForm.name.$error.required" class="text-error" ng-i18next="global.required"></span>
+            
+            <label ng-i18next="configurationForm.priest"></label>
+            <input name="interval" type="text" class="span6" ng-model="currentParish.priest" required />
+            <span ng-show="formSubmitted && userForm.priest.$error.required" class="text-error" ng-i18next="global.required"></span>
+
+            <label ng-i18next="configurationForm.birth"></label>
+            <input name="interval" type="text" class="span2" ng-model="currentParish.birth" required />
+            <span ng-show="formSubmitted && userForm.birth.$error.required" class="text-error" ng-i18next="global.required"></span>
+
+            <label ng-i18next="configurationForm.email"></label>
+            <input name="interval" type="email" class="span5" ng-model="currentParish.email" required />
+            <span ng-show="formSubmitted && userForm.email.$error.required" class="text-error" ng-i18next="global.required"></span>
+            <span ng-show="formSubmitted && userForm.email.$error.email" class="text-error" ng-i18next="global.emailInvalid"></span>
+
+            <label ng-i18next="configurationForm.site"></label>
+            <input name="site" type="text" class="span4" ng-model="currentParish.site" />
+
+            <label ng-i18next="configurationForm.telephone"></label>
+            <input name="site" type="text" class="span4" ng-model="currentParish.telephone" />
+        </div>    
+        <div class="control-group" style="padding-top:10px;">
+            <div class="controls">
+                <button type="submit" ng-click="sendPassword(userForm)" ng-disabled="isSending" class="btn btn-primary pull-left" ng-i18next="global.save"></button>
+            </div>
+        </div>
+    </fieldset>    
+</form>

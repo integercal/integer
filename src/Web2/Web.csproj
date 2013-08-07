@@ -153,6 +153,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IntegerConfig.cs" />
+    <Compile Include="Controllers\ConfiguracoesController.cs" />
     <Compile Include="Controllers\UsuariosSenhaController.cs" />
     <Compile Include="Controllers\IntegerController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Helpers\UriHelperExtensions.cs" />
     <Compile Include="Infra\Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="Infra\Automapper\AutoMapperExtensions.cs" />
+    <Compile Include="Infra\Automapper\Profiles\ConfigProfile.cs" />
     <Compile Include="Infra\Automapper\Profiles\GroupProfile.cs" />
     <Compile Include="Infra\Automapper\Profiles\LocalProfile.cs" />
     <Compile Include="Infra\Automapper\Profiles\UserProfile.cs" />
@@ -179,6 +181,7 @@
     <Compile Include="Infra\Raven\CriaUsuarioService.cs" />
     <Compile Include="Infra\Raven\EventoExtensions.cs" />
     <Compile Include="Infra\Raven\UsuarioExtensions.cs" />
+    <Compile Include="Models\ConfigModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\EventTypeModel.cs" />
     <Compile Include="Models\FacebookUserModel.cs" />
@@ -199,6 +202,7 @@
     <Content Include="App\controllers\admin\userController.js" />
     <Content Include="App\controllers\admin\eventTypeController.js" />
     <Content Include="App\controllers\admin\groupController.js" />
+    <Content Include="App\controllers\admin\configController.js" />
     <Content Include="App\controllers\calendarController.js" />
     <Content Include="App\controllers.js" />
     <Content Include="App\controllers\admin\localController.js" />
@@ -213,6 +217,7 @@
     <Content Include="App\main.js" />
     <Content Include="App\routes.js" />
     <Content Include="App\services.js" />
+    <Content Include="App\services\configData.js" />
     <Content Include="App\services\passwordData.js" />
     <Content Include="App\services\FacebookProvider.js" />
     <Content Include="App\services\groupData.js" />
@@ -228,6 +233,10 @@
     <Content Include="App\views\admin\groups.html" />
     <Content Include="App\views\admin\locals.html" />
     <Content Include="App\views\calendar.html" />
+    <Content Include="App\views\admin\config.html" />
+    <Content Include="App\views\admin\config-settings.html" />
+    <Content Include="App\views\admin\config-profile.html" />
+    <Content Include="App\views\admin\config-plan.html" />
     <Content Include="App\views\user-passwordchange.html" />
     <Content Include="App\views\event.html" />
     <Content Include="App\views\eventList.html" />

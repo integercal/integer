@@ -131,6 +131,21 @@
                 }
             }
         });
+        $routeProvider.when('/config', {
+            templateUrl: '/app/views/admin/config.html',
+            controller: 'ConfigController',
+            resolve: {
+                currentParish: function ($q, configData) {
+                    var deferred = $q.defer();
+                    configData.get().$then(function (result) {
+                        deferred.resolve(result.data);
+                    }, function () {
+                        deferred.reject();
+                    });
+                    return deferred.promise;
+                }
+            }
+        });
         $routeProvider.otherwise({ redirectTo: '/' });
     });
 
